@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamers Tournaments - Tu Centro de Juegos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Dark background inspired by games */
+            color: #e0e0e0; /* Light text color */
+        }
+        .hero-section {
+            /* Nuevo fondo con la imagen proporcionada por el usuario */
+            background-image: url('https://i.imgur.com/pUDwE37.jpeg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 0;
+            display: flex;
+            flex-direction: column; /* Para apilar el logo, título y párrafo */
+            justify-content: center;
+            align-items: center;
+            min-height: 600px;
+            padding: 20px; /* Añadir un poco de padding para evitar que el contenido toque los bordes */
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Degradado más oscuro para que el texto resalte */
+            background: linear-gradient(to bottom, rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.95));
+            z-index: -1;
+        }
+        .btn-primary {
+            background-color: #e94560; /* Vibrant button color */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded */
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); /* Sombra para el botón */
+        }
+        .btn-primary:hover {
+            background-color: #d8304a;
+            transform: scale(1.05);
+        }
+        .card {
+            background-color: #2a0a4a; /* Darker card background */
+            border-radius: 1rem; /* Rounded corners */
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer; /* Indicate clickable cards */
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+        }
+        .section-title {
+            color: #e94560; /* Accent color for titles */
+            font-weight: 700;
+        }
+        .diamond-option, .gold-option, .cp-option { /* Added .cp-option */
+            background-color: #3a1a5e;
+            border: 2px solid #e94560;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-weight: 600;
+            text-align: center;
+        }
+        .diamond-option.selected, .gold-option.selected, .cp-option.selected { /* Added .cp-option */
+            background-color: #e94560;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .diamond-option:hover, .gold-option:hover, .cp-option:hover { /* Added .cp-option */
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: #1a1a2e;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90%;
+            width: 600px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh; /* Limit height for scrollable content */
+            overflow-y: auto; /* Enable scrolling for modal content */
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close-btn:hover {
+            color: #e94560;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #e94560;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Chat Specific Styles */
+        .chat-container {
+            background-color: #2a0a4a;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 500px; /* Fixed height for chat window */
+        }
+        .chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 1rem; /* Space for scrollbar */
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .chat-message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            word-wrap: break-word;
+        }
+        .chat-message.user {
+            background-color: #e94560;
+            align-self: flex-end;
+            color: white;
+            border-bottom-right-radius: 0;
+        }
+        .chat-message.ai {
+            background-color: #3a1a5e;
+            align-self: flex-start;
+            color: #e0e0e0;
+            border-bottom-left-radius: 0;
+        }
+        .chat-input-area {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .chat-input {
+            flex-grow: 1;
+            background-color: #3a1a5e;
+            border: 1px solid #e94560;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: white;
+        }
+        .chat-send-btn {
+            background-color: #e94560;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .chat-send-btn:hover {
+            background-color: #d8304a;
+        }
+        .quick-questions button {
+            background-color: #4a0a2e;
+            color: #e0e0e0;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease;
+        }
+        .quick-questions button:hover {
+            background-color: #e94560;
+            color: white;
+        }
+
+        /* Floating Chat Button (Moved to bottom-right) */
+        .floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem; /* Changed from left to right */
+            background-color: #e94560;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            z-index: 999;
+        }
+        .floating-chat-btn:hover {
+            transform: scale(1.05);
+        }
+        .floating-chat-btn img {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%; /* Make the image itself rounded */
+            object-fit: cover;
+        }
+
+        /* Idea Wall Specific Styles */
+        .idea-wall-container {
+            background-color: #2a0a4a;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .idea-messages {
+            max-height: 400px; /* Limit height for scrollability */
+            overflow-y: auto;
+            padding-right: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .idea-message-item {
+            background-color: #3a1a5e;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            word-wrap: break-word;
+        }
+        .idea-message-item strong {
+            color: #e94560;
+        }
+        .idea-input-area {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+        .idea-input {
+            background-color: #3a1a5e;
+            border: 1px solid #e94560;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: white;
+        }
+        .idea-send-btn {
+            background-color: #e94560;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            align-self: flex-end; /* Align button to the right */
+        }
+        .idea-send-btn:hover {
+            background-color: #d8304a;
+        }
+
+        /* Animaciones para el texto del Hero */
+        .animate-text-shadow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(233, 69, 96, 0.5);
+            animation: pulse-shadow 2s infinite alternate;
+        }
+
+        @keyframes pulse-shadow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(233, 69, 96, 0.8);
+            }
+            100% {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(233, 69, 96, 1);
+            }
+        }
+
+        /* Recent Purchase Notification Styles */
+        #purchase-notifications-container {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem; /* Positioned in the bottom-left */
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 998; /* Below AI chat button if it were on the left */
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+
+        .purchase-notification {
+            background-color: #3a1a5e;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards; /* Show for 4.5s, then fade out */
+            min-width: 250px;
+            max-width: 300px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            pointer-events: auto; /* Re-enable pointer events for the notification itself */
+        }
+
+        .purchase-notification.new {
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-100%); /* Slide out as it fades */
+            }
+        }
+
+        /* Referral Program Specific Styles */
+        .referral-section {
+            background-color: #2a0a4a; /* Darker card background */
+            border-radius: 1rem;
+            padding: 2.5rem; /* More padding for prominence */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* For background effects */
+        }
+
+        .referral-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(233, 69, 96, 0.1) 0%, transparent 70%);
+            animation: rotate-gradient 15s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate-gradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .referral-content {
+            position: relative;
+            z-index: 1; /* Ensure content is above the gradient */
+        }
+
+        .referral-section h2 {
+            font-size: 3.5rem; /* Larger title */
+            color: #e94560;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+        }
+
+        .referral-section p {
+            font-size: 1.25rem;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .referral-benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-item {
+            background-color: #3a1a5e;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1 1 calc(33% - 1.5rem); /* Responsive sizing */
+            min-width: 280px;
+            max-width: 350px;
+            transition: transform 0.3s ease;
+            border: 1px solid #e94560;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .benefit-item svg {
+            color: #e94560;
+            margin-bottom: 1rem;
+            width: 4rem; /* Larger icons */
+            height: 4rem;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.75rem;
+        }
+
+        .benefit-item p {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 0; /* Override default p margin */
+        }
+
+        .referral-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            text-align: left;
+        }
+
+        .step-item {
+            background-color: #1a1a2e;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid rgba(233, 69, 96, 0.5);
+        }
+
+        .step-item span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e94560;
+            background-color: #3a1a5e;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .step-item p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .referral-section h2 {
+                font-size: 2.5rem;
+            }
+            .referral-section p {
+                font-size: 1rem;
+            }
+            .benefit-item {
+                flex: 1 1 100%; /* Stack on small screens */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center flex-wrap">
+            <!-- Logo en la Navbar -->
+            <a href="#" class="flex items-center rounded-md px-3 py-2 transition duration-300 hover:bg-gray-700">
+                <img src="https://i.imgur.com/QKn1nXe.jpeg" alt="Logo de Gamers Tournaments" class="h-8 w-auto mr-2 rounded-full">
+                <span class="text-white text-3xl font-bold">Gamers <span class="text-e94560">Tournaments</span></span>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <div class="block lg:hidden">
+                <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-gray-200 border-gray-400 hover:text-white hover:border-white">
+                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-6z"/></svg>
+                </button>
+            </div>
+
+            <!-- Nav Links -->
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden" id="nav-content">
+                <ul class="text-lg lg:flex justify-end flex-1 items-center">
+                    <li><a href="#recargas-id" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Recargas por ID</a></li>
+                    <li><a href="#recargas-internas" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Recargas Internas</a></li>
+                    <li><a href="#torneos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Torneos</a></li>
+                    <li><a href="#sobre-nosotros" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Sobre Nosotros</a></li>
+                    <li><a href="#atencion-cliente" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Contacto y Horario</a></li>
+                    <li><a href="#programa-referidos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white transition duration-300">Programa de Referidos</a></li>
+                    <!-- Eliminada la opción "Cuenta" -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center py-20 md:py-32 lg:py-48">
+        <div class="container mx-auto px-4 flex flex-col items-center justify-center">
+            <!-- El logo se ha eliminado de aquí según la solicitud del usuario -->
+
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6 animate-text-shadow">
+                ¡Conquista el Juego, Gana en la Vida Real!
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto animate-fade-in-up">
+                Recarga tus juegos favoritos como Free Fire, Bloodstrike y COD Mobile de forma rápida, segura y al mejor precio. ¡En Gamers Tournaments, siempre tenemos los mejores precios del mercado!
+            </p>
+            <a href="#recargas-id" class="btn-primary inline-block text-lg md:text-xl transform hover:scale-105 transition duration-300 ease-in-out animate-bounce-in">
+                ¡Recarga Ahora!
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+
+        <!-- Recargas por ID Section -->
+        <section id="recargas-id" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Recargas por ID</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
+                <!-- Game Card 1 - Free Fire -->
+                <div class="card text-center" data-game="freefire">
+                    <img src="https://i.pinimg.com/1200x/6b/8c/07/6b8c0788bf117781fee70e8627cf6b44.jpg" alt="Free Fire Logo" class="mx-auto mb-4 rounded-full shadow-lg bg-white p-2">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Free Fire</h3>
+                    <p class="text-gray-300 mb-4">Recarga diamantes directamente a tu cuenta con tu ID de jugador. ¡Rápido y seguro!</p>
+                    <button id="freefire-recharge-btn" class="btn-primary w-full">Recargar Diamantes</button>
+                </div>
+                <!-- Game Card 2 - Bloodstrike -->
+                <div class="card text-center" data-game="bloodstrike">
+                    <img src="https://i.pinimg.com/736x/94/76/bb/9476bb2a4d3910f6c63819d27abd24ef.jpg" alt="Bloodstrike Logo" class="mx-auto mb-4 rounded-full shadow-lg">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Bloodstrike</h3>
+                    <p class="text-gray-300 mb-4">Consigue oro y paquetes especiales para Bloodstrike usando tu ID de usuario.</p>
+                    <button id="bloodstrike-recharge-btn" class="btn-primary w-full">Recargar Oro</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recargas Internas Section -->
+        <section id="recargas-internas" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Recargas Internas Directas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="card p-8 max-w-4xl mx-auto col-span-full">
+                    <p class="text-gray-300 text-lg mb-6">
+                        Ofrecemos un servicio de recargas internas directamente en tu cuenta de juego. Esto es ideal para aquellos que prefieren una gestión más personalizada y segura de sus recargas. Nuestro equipo se encarga de todo el proceso, garantizando la entrega de tus créditos o ítems.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+                        <li>Seguridad garantizada en cada transacción.</li>
+                        <li>Proceso rápido y eficiente.</li>
+                        <li>Soporte personalizado para cada recarga.</li>
+                        <li>Ideal para grandes volúmenes de recarga o ítems específicos.</li>
+                    </ul>
+                    <div class="text-center">
+                        <!-- Modified button for internal recargas - Removed SVG arrow -->
+                        <button id="open-internal-recharge-modal-btn" class="btn-primary inline-flex items-center">
+                            Solicitar Recarga Interna
+                        </button>
+                    </div>
+                </div>
+                <!-- Game Card for COD Mobile now opens the internal recharge modal -->
+                <div class="card text-center" data-game="codmobile-internal">
+                    <img src="https://static.wikia.nocookie.net/callofduty/images/d/d6/App_Icon_COD_Mobile.png/revision/latest?cb=20190601124644" alt="COD Mobile Logo" class="mx-auto mb-4 rounded-full shadow-lg">
+                    <h3 class="text-2xl font-semibold text-white mb-3">COD Mobile</h3>
+                    <p class="text-gray-300 mb-4">Compra CP para Call of Duty Mobile con tu UID y desbloquea contenido exclusivo.</p>
+                    <button id="codmobile-recharge-btn" class="btn-primary w-full">Recargar CP</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Torneos Section -->
+        <section id="torneos" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Torneos y Eventos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Tournament Card 1 -->
+                <div class="card">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Torneo de Free Fire: Gana por Cada Kill</h3>
+                    <p class="text-gray-300 mb-4">¡Participa en nuestros torneos y gana dinero real por cada eliminación! No importa si ganas o pierdes la partida, ¡cada kill cuenta!</p>
+                    <ul class="list-disc list-inside text-gray-300 mb-4">
+                        <li>Fecha: ¡Siempre activos!</li>
+                        <li>Hora: 9:00 PM (Hora Venezuela)</li>
+                        <li>Premios: $1 USD por cada kill (muerte)</li>
+                        <li>Modalidad: Solitario, Dúo y Escuadra</li>
+                    </ul>
+                    <button class="btn-primary w-full">Inscribirse</button>
+                </div>
+                <!-- Tournament Card 2 -->
+                <div class="card">
+                    <h3 class="2xl font-semibold text-white mb-3">Copa Bloodstrike Pro: Desafío por Recompensas</h3>
+                    <p class="text-gray-300 mb-4">Compite contra los mejores en Bloodstrike y acumula kills para ganar grandes recompensas y el título de campeón.</p>
+                    <ul class="list-disc list-inside text-gray-300 mb-4">
+                        <li>Fecha: ¡Siempre activos!</li>
+                        <li>Hora: 9:00 PM (Hora Venezuela)</li>
+                        <li>Premios: $1 USD por cada kill (muerte) + Bonificaciones</li>
+                        <li>Modalidad: Solitario, Dúo y Escuadra</li>
+                    </ul>
+                    <button class="btn-primary w-full">Ver Detalles</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Nosotros Section -->
+        <section id="sobre-nosotros" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Sobre Nosotros</h2>
+            <div class="card p-8 max-w-4xl mx-auto text-lg">
+                <p class="text-gray-300 mb-4">
+                    En <span class="text-e94560 font-semibold">Gamers Tournaments</span>, somos un equipo apasionado por los videojuegos con una misión clara: ayudar a todos a generar dinero a través de los juegos como Free Fire, Bloodstrike y COD Mobile. Creemos que tu habilidad en el juego debe ser recompensada.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    Nuestra propuesta de valor es única: te pagamos $1 USD por cada kill (muerte) que realices en nuestros torneos, ¡así ganes o pierdas la partida! Esto significa que tu esfuerzo y habilidad siempre tendrán un valor, incentivando la participación y el desarrollo de la comunidad.
+                </p>
+                <p class="text-gray-300 mb-4">
+                    Además de nuestros emocionantes torneos con recompensas por kill, también ofrecemos un sistema confiable de recargas directas para que siempre tengas los recursos necesarios en tus juegos favoritos. Nos encargamos de la gestión de eventos y torneos para garantizar una experiencia justa y emocionante para todos. ¡Únete a Gamers Tournaments y convierte tu pasión en ganancias!
+                </p>
+            </div>
+        </section>
+
+        <!-- Contacto y Horario de Atención Section -->
+        <section id="atencion-cliente" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Contacto y Horario de Atención</h2>
+            <div class="card p-8 max-w-4xl mx-auto text-lg">
+                <p class="text-gray-300 mb-6">
+                    Para cualquier consulta o asistencia, nuestro asistente virtual de IA está disponible las 24 horas del día a través del icono flotante en la esquina inferior izquierda. Si prefieres un contacto directo, aquí tienes nuestros datos y horario:
+                </p>
+                <ul class="list-disc list-inside text-gray-300 mb-6 space-y-3">
+                    <li><strong class="text-white">Email:</strong> <a href="mailto:duogamerpro10@gmail.com" class="text-e94560 hover:underline">duogamerpro10@gmail.com</a></li>
+                    <li><strong class="text-white">WhatsApp:</strong> <a href="https://wa.me/584124984938" class="text-e94560 hover:underline" target="_blank">+58 4124984938</a></li>
+                    <li><strong class="text-white">Horario de Atención Personalizada:</strong> Todos los días, 9:00 AM - 9:00 PM (Hora Venezuela)</li>
+                </ul>
+                <p class="text-300 text-lg mb-6">
+                    ¡Únete a nuestro grupo de WhatsApp para estar al tanto de los próximos torneos, novedades y coordinar partidas!
+                    <a href="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L?mode=ac_t" target="_blank" class="btn-primary inline-block mt-4">Unirse al Grupo de WhatsApp</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Programa de Referidos Section (Actualizado) -->
+        <section id="programa-referidos" class="py-16">
+            <div class="referral-section container mx-auto px-4">
+                <div class="referral-content">
+                    <h2 class="mb-4">¡Invita a un Amigo y Crece con Nosotros!</h2>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-10">
+                        Comparte la emoción de Gamers Tournaments y ayúdanos a hacer crecer nuestra comunidad. ¡Más jugadores significan torneos más grandes y épicos para todos!
+                    </p>
+
+                    <div class="referral-benefits">
+                        <div class="benefit-item">
+                            <!-- Image of Community Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg>
+                            <h3 class="text-white">Fortalece la Comunidad</h3>
+                            <p>Cada amigo que invites y se una, hace nuestra comunidad más fuerte y activa.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <!-- Image of Tournament Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5l6 4.5-6 4.5-6-4.5 6-4.5Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5l6 4.5-6 4.5-6-4.5 6-4.5Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75l6-4.5-6-4.5-6 4.5 6 4.5Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 12.75l6-4.5-6-4.5-6 4.5 6 4.5Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18l6-4.5-6-4.5-6 4.5 6 4.5Z" />
+                            </svg>
+                            <h3 class="text-white">Torneos Más Grandes</h3>
+                            <p>Con más jugadores, podemos organizar torneos con mayor participación y más emoción.</p>
+                        </div>
+                        <div class="benefit-item">
+                            <!-- Image of Gaming Experience Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16 mx-auto">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12.9V12m0 0l-3 3m3-3-3-3M3 12V6.375m0 0L6 9.375M3 12l3-3m0 0V3.375M12 21.75V4.75M4.5 9.75h15" />
+                            </svg>
+                            <h3 class="text-white">Mejor Experiencia para Todos</h3>
+                            <p>Una comunidad activa significa más competencia, más diversión y una mejor experiencia de juego en general.</p>
+                        </div>
+                    </div>
+
+                    <h4 class="text-3xl font-bold text-white mb-6">¿Cómo Funciona?</h4>
+                    <div class="referral-steps">
+                        <div class="step-item">
+                            <span>1</span>
+                            <div>
+                                <p><strong>Genera tu Enlace Único:</strong> Únete a nuestro grupo de WhatsApp y comparte este enlace con tus amigos para que se unan a la comunidad.</p>
+                                <div class="flex flex-col sm:flex-row gap-2 mt-2">
+                                    <input type="text" id="whatsapp-referral-link" class="flex-grow bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-sm text-white" value="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L?mode=ac_t" readonly>
+                                    <button id="copy-whatsapp-link-btn" class="btn-primary px-4 py-2 text-sm">Copiar Enlace</button>
+                                    <a href="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L?mode=ac_t" target="_blank" class="btn-primary px-4 py-2 text-sm text-center flex items-center justify-center">Unirse al Grupo</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span>2</span>
+                            <p><strong>Comparte con tus Amigos:</strong> Envía tu enlace a tus amigos gamers por WhatsApp, redes sociales, ¡donde quieras!</p>
+                        </div>
+                        <div class="step-item">
+                            <span>3</span>
+                            <p><strong>Ellos se Unen y Participan:</strong> Tus amigos se registran a través de tu enlace y comienzan a disfrutar de Gamers Tournaments.</p>
+                        </div>
+                        <div class="step-item">
+                            <span>4</span>
+                            <p><strong>¡Crecemos Juntos!:</strong> Con cada nuevo miembro, la comunidad se fortalece y abrimos la puerta a más y mejores eventos para todos.</p>
+                        </div>
+                    </div>
+
+                    <button id="referral-cta-btn" class="btn-primary text-xl px-8 py-4 animate-bounce-in">
+                        ¡Quiero Ayudar a Crecer la Comunidad!
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nueva Sección: Muro de Ideas y Sugerencias -->
+        <section id="aportar-ideas" class="py-16">
+            <h2 class="text-4xl font-bold text-center mb-12 section-title">Muro de Ideas y Sugerencias</h2>
+            <div class="idea-wall-container p-8 max-w-4xl mx-auto text-lg">
+                <p class="text-gray-300 mb-6">
+                    ¡Comparte tus ideas y sugerencias para nuestros torneos o para mejorar Gamers Tournaments! Tu opinión es muy valiosa para seguir creciendo.
+                </p>
+                <div class="idea-messages" id="idea-messages-container">
+                    <!-- Ideas will be loaded here by JavaScript -->
+                    <p class="text-gray-400 text-center">Cargando ideas...</p>
+                </div>
+                <div class="idea-input-area">
+                    <input type="text" id="idea-name-input" class="idea-input" placeholder="Tu Nombre (opcional)">
+                    <textarea id="idea-message-input" rows="3" class="idea-input" placeholder="Escribe tu idea o sugerencia aquí..."></textarea>
+                    <button id="send-idea-btn" class="idea-send-btn">Enviar Idea</button>
+                </div>
+                <div class="spinner" id="idea-spinner"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Recent Purchase Notifications Container -->
+    <div id="purchase-notifications-container">
+        <!-- Notifications will appear here -->
+    </div>
+
+    <!-- Floating Chat Button (Now on the right) -->
+    <div id="open-ai-chat-btn" class="floating-chat-btn">
+        <img src="https://i.imgur.com/QKn1nXe.jpeg" alt="Logo de Gamers Tournaments" class="w-full h-full object-cover rounded-full">
+    </div>
+
+    <!-- Modal Structure for Game Top-up -->
+    <div id="game-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="close-modal">&times;</button>
+            <h3 id="modal-title" class="text-3xl font-bold text-e94560 mb-6 text-center"></h3>
+
+            <!-- Content for Free Fire -->
+            <div id="freefire-content" class="game-modal-section hidden">
+                <p class="text-gray-300 text-lg mb-6 text-center">
+                    Selecciona la cantidad de diamantes que deseas recargar y proporciona tu ID de Free Fire.
+                </p>
+
+                <div class="mb-8">
+                    <label class="block text-white text-xl font-bold mb-4 text-center">Selecciona la cantidad de diamantes:</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="freefire-diamond-options">
+                        <div class="diamond-option" data-diamonds="110" data-price="125 Bs">110 Diamantes - 125 Bs</div>
+                        <div class="diamond-option" data-diamonds="220" data-price="250 Bs">220 Diamantes - 250 Bs</div>
+                        <div class="diamond-option" data-diamonds="341" data-price="375 Bs">341 Diamantes - 375 Bs</div>
+                        <div class="diamond-option" data-diamonds="572" data-price="625 Bs">572 Diamantes - 625 Bs</div>
+                        <div class="diamond-option" data-diamonds="682" data-price="750 Bs">682 Diamantes - 750 Bs</div>
+                        <div class="diamond-option" data-diamonds="913" data-price="1125 Bs">913 Diamantes - 1125 Bs</div>
+                        <div class="diamond-option" data-diamonds="1166" data-price="1.450 Bs">1166 Diamantes - 1.450 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Basica" data-price="50 Bs">Tarjeta Básica - 50 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Semanal" data-price="280 Bs">Tarjeta Semanal - 280 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Mensual" data-price="1.400 Bs">Tarjeta Mensual - 1.400 Bs</div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label for="freefire-modal-id" class="block text-white text-xl font-bold mb-4 text-center">Ingresa tu ID de Free Fire:</label>
+                    <input type="text" id="freefire-modal-id" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600 text-white text-center text-lg" placeholder="Tu ID de Free Fire">
+                </div>
+            </div>
+
+            <!-- Content for Bloodstrike -->
+            <div id="bloodstrike-content" class="game-modal-section hidden">
+                <p class="text-gray-300 text-lg mb-6 text-center">
+                    Selecciona la cantidad de oro o pase élite que deseas recargar y proporciona tu ID de Bloodstrike.
+                </p>
+                <div class="mb-8">
+                    <label class="block text-white text-xl font-bold mb-4 text-center">Selecciona la cantidad de Oro/Pase:</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="bloodstrike-gold-options">
+                        <div class="gold-option" data-gold="105" data-price="140 Bs">105 Oro - 140 Bs</div>
+                        <div class="gold-option" data-gold="320" data-price="420 Bs">320 Oro - 420 Bs</div>
+                        <div class="gold-option" data-gold="540" data-price="700 Bs">540 Oro - 700 Bs</div>
+                        <div class="gold-option" data-gold="1100" data-price="1400 Bs">1100 Oro - 1400 Bs</div>
+                        <div class="gold-option" data-gold="Pase Elite" data-price="580 Bs">Pase Élite - 580 Bs</div>
+                        <div class="gold-option" data-gold="Pase Elite Plus" data-price="1380 Bs">Pase Élite Plus - 1380 Bs</div>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <label for="bloodstrike-modal-id" class="block text-white text-xl font-bold mb-4 text-center">Ingresa tu ID de Bloodstrike:</label>
+                    <input type="text" id="bloodstrike-modal-id" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-700 border-gray-600 text-white text-center text-lg" placeholder="Tu ID de Bloodstrike">
+                </div>
+            </div>
+
+            <!-- Content for COD Mobile (Placeholder - now in internal recargas) -->
+            <div id="codmobile-content" class="game-modal-section hidden">
+                <!-- This section is now empty as COD Mobile is handled in internal recargas -->
+            </div>
+
+            <!-- Payment Details (Common for all games in modal) -->
+            <div class="mb-8 p-6 bg-gray-800 rounded-lg border border-e94560">
+                <h3 class="text-2xl font-bold text-e94560 mb-4 text-center">Datos para el Pago</h3>
+                <p class="text-gray-300 text-lg mb-2">Por favor, realiza tu pago a los siguientes datos:</p>
+                <ul class="list-none text-gray-200 text-xl space-y-2">
+                    <li><strong class="text-white">C.I:</strong> 32377208</li>
+                    <li><strong class="text-white">Banco:</strong> Banesco (0134)</li>
+                    <li><strong class="text-white">Número de Teléfono:</strong> 04124984938</li>
+                </ul>
+                <p class="text-red-400 text-sm mt-4 text-center font-bold">
+                    ¡IMPORTANT! Recuerda enviar el monto EXACTO para procesar tu recarga.
+                    Una vez realizado el pago, envía el comprobante a nuestro WhatsApp para procesar tu recarga.
+                </p>
+            </div>
+
+            <div class="text-center">
+                <button id="buy-button" class="btn-primary text-xl px-8 py-4">Comprar y Enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure for AI Chat -->
+    <div id="ai-chat-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="close-ai-chat-modal">&times;</button>
+            <h3 class="text-3xl font-bold text-e94560 mb-6 text-center">Asistente de Atención al Cliente 💬</h3>
+
+            <div class="chat-container">
+                <p class="text-gray-300 mb-6 text-center">
+                    ¡Hola! Soy tu asistente virtual de Gamers Tournaments. ¿En qué puedo ayudarte hoy?
+                </p>
+
+                <div class="chat-messages" id="ai-chat-messages">
+                    <!-- Initial AI message will be added by JS -->
+                </div>
+
+                <div class="quick-questions flex flex-wrap justify-center gap-3 mb-4">
+                    <button class="quick-question-btn" data-question="¿Cómo funcionan las recargas por ID?">¿Recargas por ID?</button>
+                    <button class="quick-question-btn" data-question="¿Cómo me inscribo en un torneo?">¿Inscripción a Torneos?</button>
+                    <button class="quick-question-btn" data-question="¿Cuáles son los métodos de pago?">¿Métodos de Pago?</button>
+                    <button class="quick-question-btn" data-question="Necesito ayuda con una recarga interna.">Ayuda Recarga Interna</button>
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="ai-chat-input" class="chat-input" placeholder="Escribe tu pregunta aquí...">
+                    <button id="ai-chat-send-btn" class="chat-send-btn">Enviar</button>
+                </div>
+                <div class="spinner" id="ai-chat-spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Privacy Policy -->
+    <div id="privacy-policy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="close-privacy-policy-modal">&times;</button>
+            <h3 class="text-3xl font-bold text-e94560 mb-6 text-center">Nuestra Política de Privacidad: ¡Tu Confianza es Clave!</h3>
+            <div class="text-gray-300 text-base space-y-4">
+                <p>¡Hola, gamer! En Gamers Tournaments, sabemos lo importante que es tu privacidad. Queremos que te sientas súper seguro y tranquilo mientras disfrutas de nuestros servicios. Por eso, te explicamos de forma sencilla cómo manejamos tu información. ¡No hay letra pequeña, solo transparencia!</p>
+
+                <h4>1. ¿Qué información te pedimos (y por qué)?</h4>
+                <p>Cuando recargas tus juegos o te unes a un torneo, te pedimos algunos datos como tu nombre, tu ID de juego, tu número de WhatsApp (para que podamos comunicarnos contigo) y los detalles de tu pago. Esto es esencial para que todo funcione de maravilla: para que tus recargas lleguen a tiempo, para que puedas participar en nuestros emocionantes torneos y para mantenerte al tanto de las novedades y promociones. También recopilamos algunos datos técnicos (como tu dirección IP y cómo usas nuestra web) para que la plataforma funcione cada vez mejor y para que tu experiencia sea top.</p>
+
+                <h4>2. ¿Qué hacemos con tu información?</h4>
+                <p>Tu información es sagrada para nosotros. La usamos únicamente para lo que te dijimos: procesar tus recargas, gestionar tu participación en los torneos, enviarte comunicaciones importantes (¡y ofertas geniales!) y mejorar constantemente nuestra web para que sea más rápida y fácil de usar. ¡Ojo! Nunca, pero nunca, compartiremos tus datos personales con terceros para que te envíen publicidad sin tu permiso. ¡Eso no va con nosotros!</p>
+
+                <h4>3. ¿Cómo protegemos tus datos?</h4>
+                <p>Nos tomamos muy en serio la seguridad. Hemos puesto en marcha un montón de medidas técnicas y organizativas para proteger tu información de cualquier acceso no autorizado, cambios raros, divulgaciones inesperadas o pérdidas. Piensa en ello como un escudo digital. Sin embargo, como sabes, internet es un mundo vasto y ninguna transmisión de datos es 100% infalible. Hacemos todo lo posible, pero no podemos prometer una seguridad absoluta. ¡Es un trabajo en equipo!</p>
+
+                <h4>4. ¿Tienes el control de tus datos? ¡Claro que sí!</h4>
+                <p>Tú eres el dueño de tu información. Si en algún momento quieres ver qué datos tenemos tuyos, corregir algo que no esté bien o incluso pedir que los eliminemos, solo tienes que contactarnos. Estamos aquí para ayudarte. Revisa nuestra sección de Contacto para que sepas cómo ubicarnos.</p>
+
+                <h4>5. ¿Y si cambiamos algo en esta política?</h4>
+                <p>El mundo digital cambia, y nosotros también podemos actualizar esta política de privacidad de vez en cuando. Pero no te preocupes, si hacemos algún cambio importante, te lo haremos saber publicando la versión actualizada en nuestra web. Así siempre estarás informado.</p>
+
+                <p>¡Gracias por confiar en Gamers Tournaments! Estamos aquí para que disfrutes al máximo.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Terms and Conditions -->
+    <div id="terms-conditions-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="close-terms-conditions-modal">&times;</button>
+            <h3 class="text-3xl font-bold text-e94560 mb-6 text-center">Términos y Condiciones</h3>
+            <div class="text-gray-300 text-base space-y-4">
+                <p>Al utilizar los servicios de Gamers Tournaments, aceptas los siguientes términos y condiciones:</p>
+                <h4>1. Servicios Ofrecidos</h4>
+                <p>Gamers Tournaments ofrece servicios de recarga de créditos y divisas para juegos (Free Fire, Bloodstrike, COD Mobile) y la organización de torneos con premios en efectivo basados en kills.</p>
+                <h4>2. Recargas de Juegos</h4>
+                <p>Nos comprometemos a que todas las recargas sean procesadas de manera eficiente y lleguen a tu cuenta de juego en su totalidad.
+                    <ul>
+                        <li>Las recargas de **Bloodstrike** suelen ser instantáneas.</li>
+                        <li>Las recargas de **Free Fire** generalmente tardan entre 20 minutos y 1 hora, y en ocasiones excepcionales, hasta 2 horas.</li>
+                    </ul>
+                    Es responsabilidad del usuario proporcionar la ID de juego correcta. No nos hacemos responsables por errores en la ID proporcionada por el usuario.
+                </p>
+                <h4>3. Política de Reembolsos</h4>
+                <p>No se realizarán reembolsos por recargas una vez que el servicio haya sido procesado y entregado correctamente. Los reembolsos solo se considerarán en casos excepcionales y justificados, como fallas técnicas atribuibles a Gamers Tournaments que impidan la entrega de la recarga. Las solicitudes de reembolso deben realizarse dentro de las 24 horas posteriores a la recarga. No se procesarán reembolsos después de este período ni si la recarga ha sido consumida o utilizada por el usuario. La decisión final sobre cualquier reembolso recae exclusivamente en Gamers Tournaments.</p>
+                <h4>4. Participación en Torneos</h4>
+                <p>La participación en torneos está sujeta a las reglas específicas de cada evento, que serán comunicadas previamente. Los premios se pagarán según lo estipulado en las bases del torneo. Gamers Tournaments se reserva el derecho de descalificar a cualquier participante que viole las reglas o muestre comportamiento antideportivo.</p>
+                <h4>5. Limitación de Responsabilidad</h4>
+                <p>Gamers Tournaments no será responsable de pérdidas, daños o interrupciones de servicio causadas por factores fuera de nuestro control, incluyendo, pero no limitado a, fallas de Internet, problemas con los servidores de juego, ataques cibernéticos o casos de fuerza mayor. Nos esforzamos por mantener la seguridad y disponibilidad de nuestros servicios, pero no garantizamos un servicio ininterrumpido o libre de errores.</p>
+                <h4>6. Modificaciones de los Términos</h4>
+                <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Las modificaciones serán efectivas inmediatamente después de su publicación en nuestro sitio web. Es tu responsabilidad revisar periódicamente estos términos.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Modal for Internal Recargas (COD Mobile) -->
+    <div id="internal-recharge-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="close-internal-recharge-modal">&times;</button>
+            <h3 class="text-3xl font-bold text-e94560 mb-6 text-center">Recarga Interna de COD Mobile</h3>
+
+            <p class="text-gray-300 text-lg mb-6 text-center">
+                Selecciona la cantidad de CP que deseas recargar. Una vez que envíes tu solicitud por WhatsApp, te pediremos los datos de tu cuenta para realizar la recarga.
+            </p>
+
+            <div class="mb-8">
+                <label class="block text-white text-xl font-bold mb-4 text-center">Selecciona la cantidad de CP:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="codmobile-cp-options">
+                    <div class="cp-option" data-cp="80">80 CP</div>
+                    <div class="cp-option" data-cp="240">240 CP</div>
+                    <div class="cp-option" data-cp="400">400 CP</div>
+                    <div class="cp-option" data-cp="800">800 CP</div>
+                    <div class="cp-option" data-cp="2000">2000 CP</div>
+                    <div class="cp-option" data-cp="4000">4000 CP</div>
+                </div>
+            </div>
+
+            <!-- Payment Details (Common for all games in modal) -->
+            <div class="mb-8 p-6 bg-gray-800 rounded-lg border border-e94560">
+                <h3 class="text-2xl font-bold text-e94560 mb-4 text-center">Datos para el Pago</h3>
+                <p class="text-gray-300 text-lg mb-2">Por favor, realiza tu pago a los siguientes datos:</p>
+                <ul class="list-none text-gray-200 text-xl space-y-2">
+                    <li><strong class="text-white">C.I:</strong> 32377208</li>
+                    <li><strong class="text-white">Banco:</strong> Banesco (0134)</li>
+                    <li><strong class="text-white">Número de Teléfono:</strong> 04124984938</li>
+                </ul>
+                <p class="text-red-400 text-sm mt-4 text-center font-bold">
+                    ¡IMPORTANT! Recuerda enviar el monto EXACTO para procesar tu recarga.
+                    Una vez realizado el pago, envía el comprobante a nuestro WhatsApp para procesar tu recarga.
+                </p>
+            </div>
+
+            <div class="text-center">
+                <button id="buy-internal-button" class="btn-primary text-xl px-8 py-4">Comprar y Enviar por WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Eliminado el Modal para Cuentas de Usuario -->
+
+    <!-- General Message Modal -->
+    <div id="message-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="close-message-modal">&times;</button>
+            <h3 id="message-modal-title" class="text-3xl font-bold text-e94560 mb-6 text-center"></h3>
+            <p id="message-modal-text" class="text-gray-300 text-lg mb-6 text-center"></p>
+            <div class="text-center">
+                <button id="message-modal-ok-btn" class="btn-primary px-8 py-4">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 bg-opacity-80 backdrop-blur-sm py-8 mt-16 text-center text-gray-400">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Gamers Tournaments. Todos los derechos reservados.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" id="privacy-policy-link" class="hover:text-white transition duration-300">Política de Privacidad</a>
+                <a href="#" id="terms-conditions-link" class="hover:text-white transition duration-300">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration (provided by Canvas environment)
+        // IMPORTANT: When running this code locally outside the Canvas environment,
+        // you MUST replace the placeholder values below with your actual Firebase project configuration.
+        // You can find your project's config in the Firebase Console -> Project settings.
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : JSON.stringify({
+            apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your actual API Key
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Replace with your actual Auth Domain
+            projectId: "YOUR_PROJECT_ID", // Replace with your actual Project ID
+            storageBucket: "YOUR_PROJECT_ID.appspot.com", // Replace with your actual Storage Bucket
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Replace with your actual Messaging Sender ID
+            appId: "YOUR_APP_ID" // Replace with your actual App ID
+        }));
+        const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId || 'default-app-id'; // Use projectId as fallback for appId
+
+        let app;
+        let db;
+        let auth;
+        let userId = '';
+
+        try {
+            app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            // Authenticate anonymously
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    userId = user.uid;
+                    console.log("Authenticated with Firebase UID:", userId);
+                } else {
+                    console.log("No user signed in. Attempting anonymous sign-in.");
+                    try {
+                        await signInAnonymously(auth);
+                        userId = auth.currentUser?.uid || crypto.randomUUID();
+                        console.log("Signed in anonymously. User ID:", userId);
+                    } catch (error) {
+                        console.error("Error signing in anonymously:", error);
+                        userId = crypto.randomUUID();
+                        console.log("Fallback to random User ID:", userId);
+                    }
+                }
+                setupIdeaWallListener(); // Setup listener only after auth state is determined
+            });
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            showMessage('Error de Firebase', 'No se pudo inicializar Firebase. Asegúrate de que tu configuración de Firebase sea correcta si estás ejecutando la página localmente.');
+            // Fallback to a random userId if Firebase fails completely
+            userId = crypto.randomUUID();
+            setupIdeaWallListener(); // Still attempt to setup non-Firebase related listeners
+        }
+
+        // --- DOM Elements ---
+        // Modals
+        const gameModal = document.getElementById('game-modal');
+        const internalRechargeModal = document.getElementById('internal-recharge-modal');
+        const aiChatModal = document.getElementById('ai-chat-modal');
+        const privacyPolicyModal = document.getElementById('privacy-policy-modal');
+        const termsConditionsModal = document.getElementById('terms-conditions-modal');
+        const messageModal = document.getElementById('message-modal'); // New: General Message Modal
+
+        // Close Buttons
+        const closeModalBtn = document.getElementById('close-modal');
+        const closeInternalRechargeModalBtn = document.getElementById('close-internal-recharge-modal');
+        const closeAiChatModalBtn = document.getElementById('close-ai-chat-modal');
+        const closePrivacyPolicyModalBtn = document.getElementById('close-privacy-policy-modal');
+        const closeTermsConditionsModalBtn = document.getElementById('close-terms-conditions-modal');
+        const closeMessageModalBtn = document.getElementById('close-message-modal'); // New: General Message Modal Close
+
+        // Game Specific Elements
+        const freefireRechargeBtn = document.getElementById('freefire-recharge-btn');
+        const bloodstrikeRechargeBtn = document.getElementById('bloodstrike-recharge-btn');
+        const codmobileRechargeBtn = document.getElementById('codmobile-recharge-btn');
+        const modalTitle = document.getElementById('modal-title');
+        const freefireContent = document.getElementById('freefire-content');
+        const bloodstrikeContent = document.getElementById('bloodstrike-content');
+        const freefireDiamondOptions = document.getElementById('freefire-diamond-options');
+        const bloodstrikeGoldOptions = document.getElementById('bloodstrike-gold-options');
+        const freefireModalIdInput = document.getElementById('freefire-modal-id');
+        const bloodstrikeModalIdInput = document.getElementById('bloodstrike-modal-id');
+        const buyButton = document.getElementById('buy-button');
+        const buyInternalButton = document.getElementById('buy-internal-button');
+        const codmobileCpOptions = document.getElementById('codmobile-cp-options');
+
+        // Idea Wall Elements
+        const ideaNameInput = document.getElementById('idea-name-input');
+        const ideaMessageInput = document.getElementById('idea-message-input');
+        const sendIdeaBtn = document.getElementById('send-idea-btn');
+        const ideaMessagesContainer = document.getElementById('idea-messages-container');
+        const ideaSpinner = document.getElementById('idea-spinner');
+
+        // Referral Program Elements
+        const referralCtaBtn = document.getElementById('referral-cta-btn');
+        const whatsappReferralLinkInput = document.getElementById('whatsapp-referral-link'); // New: WhatsApp Link Input
+        const copyWhatsappLinkBtn = document.getElementById('copy-whatsapp-link-btn');     // New: Copy WhatsApp Link Button
+
+
+        // Other global variables
+        let selectedGame = '';
+        let selectedItem = '';
+        let selectedPrice = '';
+        let selectedCpAmount = '';
+
+        // --- Idea Wall Functions ---
+        function displayIdeas(ideas) {
+            ideaMessagesContainer.innerHTML = ''; // Clear existing messages
+            if (ideas.length === 0) {
+                ideaMessagesContainer.innerHTML = '<p class="text-gray-400 text-center">Sé el primero en dejar una idea. ¡Tu opinión importa!</p>';
+                return;
+            }
+            ideas.forEach(idea => {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('idea-message-item');
+                const timestamp = idea.timestamp ? new Date(idea.timestamp.toDate()).toLocaleString() : 'Fecha desconocida';
+                messageDiv.innerHTML = `
+                    <p class="text-sm text-gray-400 mb-1">
+                        <strong>${idea.name || 'Anónimo'}</strong> (ID: ${idea.userId ? idea.userId.substring(0, 8) + '...' : 'Desconocido'}) - ${timestamp}
+                    </p>
+                    <p class="text-gray-200">${idea.message}</p>
+                `;
+                ideaMessagesContainer.appendChild(messageDiv);
+            });
+            ideaMessagesContainer.scrollTop = ideaMessagesContainer.scrollHeight; // Scroll to bottom
+        }
+
+        function setupIdeaWallListener() {
+            // Ensure db is initialized before trying to access it
+            if (!db) {
+                console.warn("Firestore (db) is not initialized. Idea Wall will not function.");
+                ideaMessagesContainer.innerHTML = '<p class="text-red-400 text-center">Error: Firestore no está inicializado. El Muro de Ideas no funcionará.</p>';
+                ideaSpinner.style.display = 'none';
+                sendIdeaBtn.disabled = true; // Disable send button if db is not available
+                return;
+            }
+
+            const ideasCollectionRef = collection(db, `artifacts/${appId}/public/data/ideas`);
+            const q = query(ideasCollectionRef, orderBy('timestamp', 'asc')); // Order by timestamp
+
+            onSnapshot(q, (snapshot) => {
+                const ideas = [];
+                snapshot.forEach(doc => {
+                    ideas.push({ id: doc.id, ...doc.data() });
+                });
+                displayIdeas(ideas);
+                ideaSpinner.style.display = 'none'; // Hide spinner once loaded
+            }, (error) => {
+                console.error("Error fetching ideas:", error);
+                let errorMessage = 'Error al cargar las ideas. Inténtalo de nuevo más tarde.';
+                if (error.code === 'permission-denied') {
+                    errorMessage = 'Error de permisos: No se pueden cargar las ideas. Asegúrate de que las reglas de seguridad de Firestore permitan la lectura de la colección "ideas" para usuarios autenticados.';
+                }
+                ideaMessagesContainer.innerHTML = `<p class="text-red-400 text-center">${errorMessage}</p>`;
+                ideaSpinner.style.display = 'none';
+            });
+
+            sendIdeaBtn.addEventListener('click', async () => {
+                const name = ideaNameInput.value.trim();
+                const message = ideaMessageInput.value.trim();
+
+                if (!message) {
+                    showMessage('Campo Vacío', 'Por favor, escribe tu idea o sugerencia antes de enviarla.');
+                    return;
+                }
+                if (!db) {
+                    showMessage('Error de Base de Datos', 'La base de datos no está disponible. No se puede enviar la idea.');
+                    return;
+                }
+
+                ideaSpinner.style.display = 'block';
+                sendIdeaBtn.disabled = true;
+
+                try {
+                    await addDoc(collection(db, `artifacts/${appId}/public/data/ideas`), {
+                        name: name || 'Anónimo',
+                        message: message,
+                        userId: userId, // Use the current user ID (anonymous or random)
+                        timestamp: serverTimestamp() // Firestore server timestamp
+                    });
+                    ideaMessageInput.value = ''; // Clear message input
+                    ideaNameInput.value = ''; // Clear name input
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                    let errorMessage = "Hubo un error al enviar tu idea. Por favor, inténtalo de nuevo.";
+                    if (e.code === 'permission-denied') {
+                        errorMessage = 'Error de permisos: No se puede enviar la idea. Asegúrate de que las reglas de seguridad de Firestore permitan la escritura en la colección "ideas" para usuarios autenticados.';
+                    }
+                    showMessage('Error', errorMessage);
+                } finally {
+                    ideaSpinner.style.display = 'none';
+                    sendIdeaBtn.disabled = false;
+                }
+            });
+        }
+
+        // --- General UI and Modal Logic ---
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') { // Prevent scrolling for empty hash links
+                    e.preventDefault();
+                    const navContent = document.getElementById('nav-content');
+                    if (navContent.classList.contains('flex-grow')) {
+                        navContent.classList.toggle('hidden');
+                        navContent.classList.toggle('flex-grow');
+                    }
+                    return;
+                }
+
+                e.preventDefault();
+
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                const navContent = document.getElementById('nav-content');
+                if (navContent.classList.contains('flex-grow')) {
+                    navContent.classList.toggle('hidden');
+                    navContent.classList.toggle('flex-grow');
+                }
+            });
+        });
+
+        // Toggle mobile menu
+        document.getElementById('nav-toggle').onclick = function () {
+            document.getElementById('nav-content').classList.toggle('hidden');
+            document.getElementById('nav-content').classList.toggle('flex-grow');
+        };
+
+        // Function to reset main game modal content and selection
+        function resetModal() {
+            freefireModalIdInput.value = '';
+            bloodstrikeModalIdInput.value = '';
+            document.querySelectorAll('.diamond-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.gold-option').forEach(opt => opt.classList.remove('selected'));
+            selectedItem = '';
+            selectedPrice = '';
+            selectedGame = '';
+        }
+
+        // Function to reset internal recharge modal content and selection
+        function resetInternalRechargeModal() {
+            document.querySelectorAll('.cp-option').forEach(opt => opt.classList.remove('selected'));
+            selectedCpAmount = '';
+        }
+
+        // Function to open the main game modal (for FF/BS)
+        function openGameModal(gameType) {
+            resetModal();
+            selectedGame = gameType;
+            document.querySelectorAll('.game-modal-section').forEach(section => section.classList.add('hidden'));
+
+            if (gameType === 'freefire') {
+                modalTitle.textContent = 'Recargar Diamantes Free Fire';
+                freefireContent.classList.remove('hidden');
+                freefireDiamondOptions.querySelectorAll('.diamond-option').forEach(option => {
+                    option.onclick = () => {
+                        document.querySelectorAll('.diamond-option').forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        selectedItem = option.dataset.diamonds;
+                        selectedPrice = option.dataset.price;
+                        console.log(`Selected: ${selectedItem} diamonds, Price: ${selectedPrice}`);
+                    };
+                });
+            } else if (gameType === 'bloodstrike') {
+                modalTitle.textContent = 'Recargar Oro Bloodstrike';
+                bloodstrikeContent.classList.remove('hidden');
+                bloodstrikeGoldOptions.querySelectorAll('.gold-option').forEach(option => {
+                    option.onclick = () => {
+                        document.querySelectorAll('.gold-option').forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        selectedItem = option.dataset.gold;
+                        selectedPrice = option.dataset.price;
+                        console.log(`Selected: ${selectedItem} gold, Price: ${selectedPrice}`);
+                    };
+                });
+            }
+            gameModal.classList.add('show');
+        }
+
+        // Event listeners for the main page game card buttons (now open modals)
+        freefireRechargeBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openGameModal('freefire');
+        });
+
+        bloodstrikeRechargeBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openGameModal('bloodstrike');
+        });
+
+        codmobileRechargeBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            resetInternalRechargeModal();
+            internalRechargeModal.classList.add('show');
+        });
+
+        // Event listener for the "Solicitar Recarga Interna" button (opens internal modal)
+        const openInternalRechargeModalBtn = document.getElementById('open-internal-recharge-modal-btn');
+        openInternalRechargeModalBtn.addEventListener('click', () => {
+            resetInternalRechargeModal();
+            internalRechargeModal.classList.add('show');
+        });
+
+        // Event listeners for clicking the *cards themselves* to open modals
+        const gameCards = document.querySelectorAll('.card[data-game]');
+
+        gameCards.forEach(card => {
+            card.addEventListener('click', (event) => {
+                if (event.target !== freefireRechargeBtn &&
+                    event.target !== bloodstrikeRechargeBtn &&
+                    event.target !== codmobileRechargeBtn) {
+
+                    const gameType = card.dataset.game;
+                    if (gameType === 'freefire' || gameType === 'bloodstrike') {
+                        openGameModal(gameType);
+                    } else if (gameType === 'codmobile-internal') {
+                        resetInternalRechargeModal();
+                        internalRechargeModal.classList.add('show');
+                    }
+                }
+            });
+        });
+
+        // Add click handlers for COD Mobile CP options
+        codmobileCpOptions.querySelectorAll('.cp-option').forEach(option => {
+            option.onclick = () => {
+                document.querySelectorAll('.cp-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedCpAmount = option.dataset.cp;
+                console.log(`Selected CP amount: ${selectedCpAmount}`);
+            };
+        });
+
+        // Handle "Comprar y Enviar por WhatsApp" button click inside Free Fire/Bloodstrike modal
+        buyButton.addEventListener('click', () => {
+            let gameId = '';
+            let message = '';
+            const whatsappNumber = '584124984938';
+
+            if (selectedGame === 'freefire') {
+                gameId = freefireModalIdInput.value.trim();
+                if (!selectedItem || !gameId) {
+                    showMessage('Error de Selección', 'Por favor, selecciona una cantidad de diamantes/tarjeta e ingresa tu ID de Free Fire.');
+                    return;
+                }
+                message = `Hola, quiero recargar ${selectedItem} para Free Fire. Mi ID es: ${gameId}. El precio es ${selectedPrice}. Adjunto el comprobante de pago.`;
+            } else if (selectedGame === 'bloodstrike') {
+                gameId = bloodstrikeModalIdInput.value.trim();
+                if (!selectedItem || !gameId) {
+                    showMessage('Error de Selección', 'Por favor, selecciona una cantidad de oro/pase e ingresa tu ID de Bloodstrike.');
+                    return;
+                }
+                message = `Hola, quiero recargar ${selectedItem} para Bloodstrike. Mi ID es: ${gameId}. El precio es ${selectedPrice}. Adjunto el comprobante de pago.`;
+            }
+
+            if (message) {
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                console.log("Generated WhatsApp Link (Free Fire/Bloodstrike):", whatsappLink);
+                window.open(whatsappLink, '_blank');
+                showPurchaseNotification({
+                    name: dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)].name,
+                    item: selectedItem,
+                    game: selectedGame === 'freefire' ? 'Free Fire' : 'Bloodstrike'
+                });
+                gameModal.classList.remove('show');
+            }
+        });
+
+        // Handle "Comprar y Enviar por WhatsApp" button click inside Internal Recharge modal (COD Mobile)
+        buyInternalButton.addEventListener('click', () => {
+            if (!selectedCpAmount) {
+                showMessage('Error de Selección', 'Por favor, selecciona una cantidad de CP.');
+                return;
+            }
+
+            const whatsappNumber = '584124984938';
+            const message = `¡Hola! Quiero hacer una recarga interna de ${selectedCpAmount} CP para COD Mobile.
+
+Para procesar tu recarga, por favor, realiza el pago a los siguientes datos:
+C.I: 32377208
+Banco: Banesco (0134)
+Número de Teléfono: 04124984938
+
+Una vez hecho el pago, envíame el comprobante por este chat. También, por favor, envíame los datos de tu cuenta de COD Mobile (usuario y contraseña, o el método que uses para iniciar sesión) para que podamos realizar la recarga directamente.
+
+¡Gracias por tu confianza en Gamers Tournaments! Estaremos atentos para ayudarte.`;
+
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            console.log("Generated WhatsApp Link (COD Mobile):", whatsappLink);
+            window.open(whatsappLink, '_blank');
+            showPurchaseNotification({
+                name: dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)].name,
+                item: selectedCpAmount + " CP",
+                game: "COD Mobile"
+            });
+            internalRechargeModal.classList.remove('show');
+        });
+
+        // Recent Purchase Notification Logic
+        const purchaseNotificationsContainer = document.getElementById('purchase-notifications-container');
+
+        const dummyPurchases = [
+            { name: "Ana", item: "110 Diamantes", game: "Free Fire" },
+            { name: "Carlos", item: "Pase Élite", game: "Bloodstrike" },
+            { name: "María", item: "240 CP", game: "COD Mobile" },
+            { name: "Pedro", item: "572 Diamantes", game: "Free Fire" },
+            { name: "Sofía", item: "1100 Oro", game: "Bloodstrike" },
+            { name: "Luis", item: "Tarjeta Semanal", game: "Free Fire" },
+            { name: "Elena", item: "400 CP", game: "COD Mobile" },
+            { name: "Diego", item: "320 Oro", game: "Bloodstrike" },
+            { name: "Juan", item: "682 Diamantes", game: "Free Fire" },
+            { name: "Laura", item: "Pase Élite Plus", game: "Bloodstrike" },
+            { name: "Andrés", item: "800 CP", game: "COD Mobile" },
+            { name: "Isabella", item: "Tarjeta Básica", game: "Free Fire" },
+            { name: "Ricardo", item: "2000 CP", game: "COD Mobile" },
+            { name: "Valeria", item: "105 Oro", game: "Bloodstrike" },
+            { name: "Miguel", item: "341 Diamantes", game: "Free Fire" },
+            { name: "Camila", item: "4000 CP", game: "COD Mobile" }
+        ];
+
+        function showPurchaseNotification(purchase) {
+            const notificationDiv = document.createElement('div');
+            notificationDiv.classList.add('purchase-notification');
+            notificationDiv.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-green-400">
+                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 0 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+                </svg>
+                <span><b>${purchase.name}</b> compró <b>${purchase.item}</b> para <b>${purchase.game}</b>.</span>
+            `;
+            purchaseNotificationsContainer.prepend(notificationDiv);
+
+            setTimeout(() => {
+                notificationDiv.classList.add('new');
+            }, 10);
+
+            setTimeout(() => {
+                notificationDiv.style.opacity = '0';
+                notificationDiv.style.transform = 'translateX(-100%)';
+                setTimeout(() => {
+                    notificationDiv.remove();
+                }, 500);
+            }, 5000);
+        }
+
+        function startRandomPurchaseNotifications() {
+            setInterval(() => {
+                const randomPurchase = dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)];
+                showPurchaseNotification(randomPurchase);
+            }, Math.random() * (20000 - 10000) + 10000);
+        }
+
+        document.addEventListener('DOMContentLoaded', startRandomPurchaseNotifications);
+
+        // --- Modal Closing Logic ---
+        closeModalBtn.addEventListener('click', () => {
+            gameModal.classList.remove('show');
+            resetModal();
+        });
+
+        closeInternalRechargeModalBtn.addEventListener('click', () => {
+            internalRechargeModal.classList.remove('show');
+            resetInternalRechargeModal();
+        });
+
+        closePrivacyPolicyModalBtn.addEventListener('click', () => {
+            privacyPolicyModal.classList.remove('show');
+        });
+
+        closeTermsConditionsModalBtn.addEventListener('click', () => {
+            termsConditionsModal.classList.remove('show');
+        });
+
+        closeAiChatModalBtn.addEventListener('click', () => {
+            aiChatModal.classList.remove('show');
+        });
+
+        // Close modal when clicking outside the modal content
+        gameModal.addEventListener('click', (event) => {
+            if (event.target === gameModal) {
+                gameModal.classList.remove('show');
+                resetModal();
+            }
+        });
+
+        internalRechargeModal.addEventListener('click', (event) => {
+            if (event.target === internalRechargeModal) {
+                internalRechargeModal.classList.remove('show');
+                resetInternalRechargeModal();
+            }
+        });
+
+        privacyPolicyModal.addEventListener('click', (event) => {
+            if (event.target === privacyPolicyModal) {
+                privacyPolicyModal.classList.remove('show');
+            }
+        });
+
+        termsConditionsModal.addEventListener('click', (event) => {
+            if (event.target === termsConditionsModal) {
+                termsConditionsModal.classList.remove('show');
+            }
+        });
+
+        aiChatModal.addEventListener('click', (event) => {
+            if (event.target === aiChatModal) {
+                aiChatModal.classList.remove('show');
+            }
+        });
+
+        // Open Privacy Policy and Terms & Conditions modals
+        document.getElementById('privacy-policy-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyPolicyModal.classList.add('show');
+        });
+
+        document.getElementById('terms-conditions-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            termsConditionsModal.classList.add('show');
+        });
+
+        // AI Chat Modal (Placeholder for now, no actual AI integration in this version)
+        document.getElementById('open-ai-chat-btn').addEventListener('click', () => {
+            aiChatModal.classList.add('show');
+            const chatMessagesContainer = document.getElementById('ai-chat-messages');
+            if (chatMessagesContainer.children.length === 0) {
+                const initialAiMessage = document.createElement('div');
+                initialAiMessage.classList.add('chat-message', 'ai');
+                initialAiMessage.textContent = '¡Hola! Soy tu asistente virtual de Gamers Tournaments. ¿En qué puedo ayudarte hoy?';
+                chatMessagesContainer.appendChild(initialAiMessage);
+            }
+        });
+
+        // Quick questions for AI chat (example, no AI logic yet)
+        document.querySelectorAll('.quick-question-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const question = button.dataset.question;
+                const chatInput = document.getElementById('ai-chat-input');
+                chatInput.value = question;
+            });
+        });
+
+        // Send chat message (example, no AI logic yet)
+        document.getElementById('ai-chat-send-btn').addEventListener('click', () => {
+            const chatInput = document.getElementById('ai-chat-input');
+            const message = chatInput.value.trim();
+            if (message) {
+                const chatMessagesContainer = document.getElementById('ai-chat-messages');
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.classList.add('chat-message', 'user');
+                userMessageDiv.textContent = message;
+                chatMessagesContainer.appendChild(userMessageDiv);
+                chatInput.value = '';
+                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+
+                const spinner = document.getElementById('ai-chat-spinner');
+                spinner.style.display = 'block';
+                setTimeout(() => {
+                    spinner.style.display = 'none';
+                    const aiResponseDiv = document.createElement('div');
+                    aiResponseDiv.classList.add('chat-message', 'ai');
+                    aiResponseDiv.textContent = `Gracias por tu pregunta: "${message}". En este momento, no tengo una respuesta programada para eso, pero nuestro equipo revisará tu consulta.`;
+                    chatMessagesContainer.appendChild(aiResponseDiv);
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }, 1500);
+            }
+        });
+
+        // New: General Message Modal Functions
+        const messageModalTitle = document.getElementById('message-modal-title');
+        const messageModalText = document.getElementById('message-modal-text');
+        const messageModalOkBtn = document.getElementById('message-modal-ok-btn');
+
+        function showMessage(title, text) {
+            messageModalTitle.textContent = title;
+            messageModalText.textContent = text;
+            messageModal.classList.add('show');
+        }
+
+        if (closeMessageModalBtn) {
+            closeMessageModalBtn.addEventListener('click', () => {
+                messageModal.classList.remove('show');
+            });
+        }
+
+        if (messageModalOkBtn) {
+            messageModalOkBtn.addEventListener('click', () => {
+                messageModal.classList.remove('show');
+            });
+        }
+
+        if (messageModal) {
+            messageModal.addEventListener('click', (event) => {
+                if (event.target === messageModal) {
+                    messageModal.classList.remove('show');
+                }
+            });
+        }
+
+        // WhatsApp Referral Link Copy/Open
+        if (copyWhatsappLinkBtn) {
+            copyWhatsappLinkBtn.addEventListener('click', () => {
+                if (whatsappReferralLinkInput) {
+                    whatsappReferralLinkInput.select();
+                    whatsappReferralLinkInput.setSelectionRange(0, 99999); // For mobile devices
+                    try {
+                        document.execCommand('copy');
+                        showMessage('Copiado', '¡Enlace copiado al portapapeles!');
+                    } catch (err) {
+                        console.error('Error al copiar el enlace: ', err);
+                        showMessage('Error al Copiar', 'No se pudo copiar el enlace. Por favor, cópialo manualmente.');
+                    }
+                }
+            });
+        }
+
+        // Referral CTA Button (placeholder for now)
+        referralCtaBtn.addEventListener('click', () => {
+            showMessage('Próximamente', '¡Genial! Pronto podrás generar tu enlace de referido y empezar a crecer la comunidad. ¡Estén atentos a las actualizaciones!');
+        });
+    </script>
+</body>
+</html>
