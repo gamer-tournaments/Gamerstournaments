@@ -81,11 +81,11 @@
         .diamond-option.selected, .gold-option.selected, .cp-option.selected { /* Added .cp-option */
             background-color: #e94560;
             transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 8px (0,0,0,0.3);
         }
         .diamond-option:hover, .gold-option:hover, .cp-option:hover { /* Added .cp-option */
             transform: translateY(-2px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px (0,0,0,0.2);
         }
 
         /* Modal Styles */
@@ -255,59 +255,6 @@
             height: 80%;
             border-radius: 50%; /* Make the image itself rounded */
             object-fit: cover;
-        }
-
-        /* Idea Wall Specific Styles */
-        .idea-wall-container {
-            background-color: #2a0a4a;
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-        .idea-messages {
-            max-height: 400px; /* Limit height for scrollability */
-            overflow-y: auto;
-            padding-right: 1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .idea-message-item {
-            background-color: #3a1a5e;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            word-wrap: break-word;
-        }
-        .idea-message-item strong {
-            color: #e94560;
-        }
-        .idea-input-area {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        .idea-input {
-            background-color: #3a1a5e;
-            border: 1px solid #e94560;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            color: white;
-        }
-        .idea-send-btn {
-            background-color: #e94560;
-            color: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            align-self: flex-end; /* Align button to the right */
-        }
-        .idea-send-btn:hover {
-            background-color: #d8304a;
         }
 
         /* Animaciones para el texto del Hero */
@@ -687,7 +634,7 @@
                 <ul class="list-disc list-inside text-gray-300 mb-6 space-y-3">
                     <li><strong class="text-white">Email:</strong> <a href="mailto:duogamerpro10@gmail.com" class="text-e94560 hover:underline">duogamerpro10@gmail.com</a></li>
                     <li><strong class="text-white">WhatsApp:</strong> <a href="https://wa.me/584124984938" class="text-e94560 hover:underline" target="_blank">+58 4124984938</a></li>
-                    <li><strong class="text-white">Horario de Atención Personalizada:</strong> Todos los días, 9:00 AM - 9:00 PM (Hora Venezuela)</li>
+                    <li><strong class="text-white">Horario de Atención Personalizada:</strong> Todos los días, 10:00 AM - 10:00 PM (Hora Venezuela)</li>
                 </ul>
                 <p class="text-300 text-lg mb-6">
                     ¡Únete a nuestro grupo de WhatsApp para estar al tanto de los próximos torneos, novedades y coordinar partidas!
@@ -770,25 +717,7 @@
             </div>
         </section>
 
-        <!-- Nueva Sección: Muro de Ideas y Sugerencias -->
-        <section id="aportar-ideas" class="py-16">
-            <h2 class="text-4xl font-bold text-center mb-12 section-title">Muro de Ideas y Sugerencias</h2>
-            <div class="idea-wall-container p-8 max-w-4xl mx-auto text-lg">
-                <p class="text-gray-300 mb-6">
-                    ¡Comparte tus ideas y sugerencias para nuestros torneos o para mejorar Gamers Tournaments! Tu opinión es muy valiosa para seguir creciendo.
-                </p>
-                <div class="idea-messages" id="idea-messages-container">
-                    <!-- Ideas will be loaded here by JavaScript -->
-                    <p class="text-gray-400 text-center">Cargando ideas...</p>
-                </div>
-                <div class="idea-input-area">
-                    <input type="text" id="idea-name-input" class="idea-input" placeholder="Tu Nombre (opcional)">
-                    <textarea id="idea-message-input" rows="3" class="idea-input" placeholder="Escribe tu idea o sugerencia aquí..."></textarea>
-                    <button id="send-idea-btn" class="idea-send-btn">Enviar Idea</button>
-                </div>
-                <div class="spinner" id="idea-spinner"></div>
-            </div>
-        </section>
+        <!-- Sección "Muro de Ideas y Sugerencias" eliminada -->
 
     </main>
 
@@ -817,16 +746,16 @@
                 <div class="mb-8">
                     <label class="block text-white text-xl font-bold mb-4 text-center">Selecciona la cantidad de diamantes:</label>
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="freefire-diamond-options">
-                        <div class="diamond-option" data-diamonds="110" data-price="125 Bs">110 Diamantes - 135 Bs</div>
-                        <div class="diamond-option" data-diamonds="220" data-price="250 Bs">220 Diamantes - 270 Bs</div>
-                        <div class="diamond-option" data-diamonds="341" data-price="375 Bs">341 Diamantes - 405 Bs</div>
-                        <div class="diamond-option" data-diamonds="572" data-price="625 Bs">572 Diamantes - 675 Bs</div>
-                        <div class="diamond-option" data-diamonds="682" data-price="750 Bs">682 Diamantes - 810 Bs</div>
+                        <div class="diamond-option" data-diamonds="110" data-price="125 Bs">110 Diamantes - 125 Bs</div>
+                        <div class="diamond-option" data-diamonds="220" data-price="250 Bs">220 Diamantes - 250 Bs</div>
+                        <div class="diamond-option" data-diamonds="341" data-price="375 Bs">341 Diamantes - 375 Bs</div>
+                        <div class="diamond-option" data-diamonds="572" data-price="625 Bs">572 Diamantes - 625 Bs</div>
+                        <div class="diamond-option" data-diamonds="682" data-price="750 Bs">682 Diamantes - 750 Bs</div>
                         <div class="diamond-option" data-diamonds="913" data-price="1125 Bs">913 Diamantes - 1125 Bs</div>
-                        <div class="diamond-option" data-diamonds="1166" data-price="1.450 Bs">1166 Diamantes - 1.500 Bs</div>
+                        <div class="diamond-option" data-diamonds="1166" data-price="1.450 Bs">1166 Diamantes - 1.450 Bs</div>
                         <div class="diamond-option" data-diamonds="Tarjeta Basica" data-price="50 Bs">Tarjeta Básica - 50 Bs</div>
-                        <div class="diamond-option" data-diamonds="Tarjeta Semanal" data-price="280 Bs">Tarjeta Semanal - 300 Bs</div>
-                        <div class="diamond-option" data-diamonds="Tarjeta Mensual" data-price="1.400 Bs">Tarjeta Mensual - 1.450 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Semanal" data-price="280 Bs">Tarjeta Semanal - 280 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Mensual" data-price="1.400 Bs">Tarjeta Mensual - 1.400 Bs</div>
                     </div>
                 </div>
 
@@ -1042,241 +971,406 @@
     </footer>
 
     <script type="module">
-        // Firebase Imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Declaración de variables para elementos DOM (se asignarán dentro de DOMContentLoaded)
+        let gameModal, internalRechargeModal, aiChatModal, privacyPolicyModal, termsConditionsModal, messageModal;
+        let closeModalBtn, closeInternalRechargeModalBtn, closeAiChatModalBtn, closePrivacyPolicyModalBtn, closeTermsConditionsModalBtn, closeMessageModalBtn;
+        let freefireRechargeBtn, bloodstrikeRechargeBtn, codmobileRechargeBtn, modalTitle, freefireContent, bloodstrikeContent, freefireDiamondOptions, bloodstrikeGoldOptions, freefireModalIdInput, bloodstrikeModalIdInput, buyButton, buyInternalButton, codmobileCpOptions;
+        let referralCtaBtn, whatsappReferralLinkInput, copyWhatsappLinkBtn;
+        let aiChatMessages, aiChatInput, aiChatSendBtn, aiChatSpinner;
 
-        // Firebase Configuration (provided by Canvas environment)
-        // IMPORTANT: When running this code locally outside the Canvas environment,
-        // you MUST replace the placeholder values below with your actual Firebase project configuration.
-        // You can find your project's config in the Firebase Console -> Project settings.
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : JSON.stringify({
-            apiKey: "YOUR_FIREBASE_API_KEY", // Replace with your actual API Key
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Replace with your actual Auth Domain
-            projectId: "YOUR_PROJECT_ID", // Replace with your actual Project ID
-            storageBucket: "YOUR_PROJECT_ID.appspot.com", // Replace with your actual Storage Bucket
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Replace with your actual Messaging Sender ID
-            appId: "YOUR_APP_ID" // Replace with your actual App ID
-        }));
-        const appId = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId || 'default-app-id'; // Use projectId as fallback for appId
-
-        let app;
-        let db;
-        let auth;
-        let userId = '';
-
-        try {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-
-            // Authenticate anonymously
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    userId = user.uid;
-                    console.log("Authenticated with Firebase UID:", userId);
-                } else {
-                    console.log("No user signed in. Attempting anonymous sign-in.");
-                    try {
-                        await signInAnonymously(auth);
-                        userId = auth.currentUser?.uid || crypto.randomUUID();
-                        console.log("Signed in anonymously. User ID:", userId);
-                    } catch (error) {
-                        console.error("Error signing in anonymously:", error);
-                        userId = crypto.randomUUID();
-                        console.log("Fallback to random User ID:", userId);
-                    }
-                }
-                setupIdeaWallListener(); // Setup listener only after auth state is determined
-            });
-        } catch (error) {
-            console.error("Error initializing Firebase:", error);
-            showMessage('Error de Firebase', 'No se pudo inicializar Firebase. Asegúrate de que tu configuración de Firebase sea correcta si estás ejecutando la página localmente.');
-            // Fallback to a random userId if Firebase fails completely
-            userId = crypto.randomUUID();
-            setupIdeaWallListener(); // Still attempt to setup non-Firebase related listeners
-        }
-
-        // --- DOM Elements ---
-        // Modals
-        const gameModal = document.getElementById('game-modal');
-        const internalRechargeModal = document.getElementById('internal-recharge-modal');
-        const aiChatModal = document.getElementById('ai-chat-modal');
-        const privacyPolicyModal = document.getElementById('privacy-policy-modal');
-        const termsConditionsModal = document.getElementById('terms-conditions-modal');
-        const messageModal = document.getElementById('message-modal'); // New: General Message Modal
-
-        // Close Buttons
-        const closeModalBtn = document.getElementById('close-modal');
-        const closeInternalRechargeModalBtn = document.getElementById('close-internal-recharge-modal');
-        const closeAiChatModalBtn = document.getElementById('close-ai-chat-modal');
-        const closePrivacyPolicyModalBtn = document.getElementById('close-privacy-policy-modal');
-        const closeTermsConditionsModalBtn = document.getElementById('close-terms-conditions-modal');
-        const closeMessageModalBtn = document.getElementById('close-message-modal'); // New: General Message Modal Close
-
-        // Game Specific Elements
-        const freefireRechargeBtn = document.getElementById('freefire-recharge-btn');
-        const bloodstrikeRechargeBtn = document.getElementById('bloodstrike-recharge-btn');
-        const codmobileRechargeBtn = document.getElementById('codmobile-recharge-btn');
-        const modalTitle = document.getElementById('modal-title');
-        const freefireContent = document.getElementById('freefire-content');
-        const bloodstrikeContent = document.getElementById('bloodstrike-content');
-        const freefireDiamondOptions = document.getElementById('freefire-diamond-options');
-        const bloodstrikeGoldOptions = document.getElementById('bloodstrike-gold-options');
-        const freefireModalIdInput = document.getElementById('freefire-modal-id');
-        const bloodstrikeModalIdInput = document.getElementById('bloodstrike-modal-id');
-        const buyButton = document.getElementById('buy-button');
-        const buyInternalButton = document.getElementById('buy-internal-button');
-        const codmobileCpOptions = document.getElementById('codmobile-cp-options');
-
-        // Idea Wall Elements
-        const ideaNameInput = document.getElementById('idea-name-input');
-        const ideaMessageInput = document.getElementById('idea-message-input');
-        const sendIdeaBtn = document.getElementById('send-idea-btn');
-        const ideaMessagesContainer = document.getElementById('idea-messages-container');
-        const ideaSpinner = document.getElementById('idea-spinner');
-
-        // Referral Program Elements
-        const referralCtaBtn = document.getElementById('referral-cta-btn');
-        const whatsappReferralLinkInput = document.getElementById('whatsapp-referral-link'); // New: WhatsApp Link Input
-        const copyWhatsappLinkBtn = document.getElementById('copy-whatsapp-link-btn');     // New: Copy WhatsApp Link Button
-
-
-        // Other global variables
+        // Otras variables globales
         let selectedGame = '';
         let selectedItem = '';
         let selectedPrice = '';
         let selectedCpAmount = '';
 
-        // --- Idea Wall Functions ---
-        function displayIdeas(ideas) {
-            ideaMessagesContainer.innerHTML = ''; // Clear existing messages
-            if (ideas.length === 0) {
-                ideaMessagesContainer.innerHTML = '<p class="text-gray-400 text-center">Sé el primero en dejar una idea. ¡Tu opinión importa!</p>';
-                return;
-            }
-            ideas.forEach(idea => {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('idea-message-item');
-                const timestamp = idea.timestamp ? new Date(idea.timestamp.toDate()).toLocaleString() : 'Fecha desconocida';
-                messageDiv.innerHTML = `
-                    <p class="text-sm text-gray-400 mb-1">
-                        <strong>${idea.name || 'Anónimo'}</strong> (ID: ${idea.userId ? idea.userId.substring(0, 8) + '...' : 'Desconocido'}) - ${timestamp}
-                    </p>
-                    <p class="text-gray-200">${idea.message}</p>
-                `;
-                ideaMessagesContainer.appendChild(messageDiv);
-            });
-            ideaMessagesContainer.scrollTop = ideaMessagesContainer.scrollHeight; // Scroll to bottom
+        // Funciones del Modal de Chat de IA
+        function addMessageToChat(message, sender) {
+            const chatMessagesContainer = document.getElementById('ai-chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('chat-message', sender);
+            messageDiv.textContent = message;
+            chatMessagesContainer.appendChild(messageDiv);
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight; // Desplazarse al final
         }
 
-        function setupIdeaWallListener() {
-            // Ensure db is initialized before trying to access it
-            if (!db) {
-                console.warn("Firestore (db) is not initialized. Idea Wall will not function.");
-                ideaMessagesContainer.innerHTML = '<p class="text-red-400 text-center">Error: Firestore no está inicializado. El Muro de Ideas no funcionará.</p>';
-                ideaSpinner.style.display = 'none';
-                sendIdeaBtn.disabled = true; // Disable send button if db is not available
-                return;
+        const automatedResponses = {
+            'recargas por id': 'Las recargas por ID son para Free Fire y Bloodstrike. Solo necesitas tu ID de juego y el comprobante de pago. ¡Son súper rápidas!',
+            'recarga interna': 'Para COD Mobile, hacemos recargas internas. Necesitamos tu ID y los datos de tu cuenta después del pago para hacerlo directamente. Es muy seguro.',
+            'inscribir torneo': '¡Inscribirse es fácil! Solo únete a nuestro grupo de WhatsApp y sigue las instrucciones para los torneos diarios. ¡Recuerda que pagamos $1 USD por cada kill!',
+            'metodo de pago': 'Aceptamos pagos por Banesco. Los datos son: C.I: 32377208, Banco: Banesco (0134), Teléfono: 04124984938. ¡No olvides enviar tu comprobante por WhatsApp!',
+            'horario': 'Nuestro asistente virtual está 24/7. Para atención personalizada, estamos de 10:00 AM a 10:00 PM (Hora Venezuela) todos los días.',
+            'grupo whatsapp': 'Claro, aquí tienes el enlace a nuestro grupo de WhatsApp para estar al día con torneos y novedades: https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L?mode=ac_t',
+            'reembolso': 'Nuestra política es no hacer reembolsos una vez procesada la recarga, a menos que haya sido un error técnico de nuestra parte. ¡Revisa nuestros Términos y Condiciones para más detalles!',
+            'programa referidos': 'El programa de referidos está en camino. ¡Pronto podrás invitar a tus amigos y ganar beneficios!',
+            'hola': '¡Hola! ¿En qué puedo ayudarte hoy?',
+            'gracias': '¡De nada! Si tienes más dudas, aquí estoy.',
+            'ayuda': 'Claro, estoy aquí para ayudarte. ¿Cuál es tu pregunta o problema?',
+            'problema': 'Entiendo que tienes un problema. Por favor, cuéntame más para poder ayudarte mejor.',
+            'duda': 'Tienes una duda, ¡perfecto! Dime qué necesitas saber.',
+            'free fire': 'Para Free Fire, recargamos diamantes por ID. ¿Cuántos diamantes te gustaría recargar?',
+            'bloodstrike': 'Para Bloodstrike, recargamos oro y pases élite por ID. ¿Qué necesitas?',
+            'cod mobile': 'Para COD Mobile, hacemos recargas internas de CP. ¿Cuántos CP te gustaría recargar?',
+            'torneos': '¡Tenemos torneos diarios de Free Fire y Bloodstrike donde ganas $1 USD por cada kill! Son a las 9:00 PM (Hora Venezuela).',
+            'contacto': 'Puedes contactarnos por WhatsApp al +58 4124984938 o por email a duogamerpro10@gmail.com. Nuestro horario de atención personalizada es de 10:00 AM a 10:00 PM (Hora Venezuela).',
+            'precios': 'Los precios varían según el juego y la cantidad. Puedes ver los detalles en las secciones de recarga de Free Fire, Bloodstrike y COD Mobile.',
+            'seguridad': '¡Tu seguridad es nuestra prioridad! Todas nuestras recargas son seguras y gestionadas por nuestro equipo. Revisa nuestra Política de Privacidad para más detalles.'
+        };
+
+        async function sendChatMessage(message) {
+            const chatInput = document.getElementById('ai-chat-input');
+            const spinner = document.getElementById('ai-chat-spinner');
+            chatInput.value = ''; // Limpiar el campo de entrada inmediatamente
+            addMessageToChat(message, 'user');
+            spinner.style.display = 'block'; // Mostrar spinner
+
+            const lowerCaseMessage = message.toLowerCase();
+            let aiResponse = 'Entiendo tu pregunta. Para darte la mejor respuesta, ¿podrías ser un poco más específico? O si prefieres, puedes contactarnos directamente por WhatsApp al +58 4124984938 o por email a duogamerpro10@gmail.com. ¡Estamos aquí para ayudarte!';
+
+            // Buscar una respuesta automatizada
+            for (const keyword in automatedResponses) {
+                if (lowerCaseMessage.includes(keyword)) {
+                    aiResponse = automatedResponses[keyword];
+                    break;
+                }
             }
 
-            const ideasCollectionRef = collection(db, `artifacts/${appId}/public/data/ideas`);
-            const q = query(ideasCollectionRef, orderBy('timestamp', 'asc')); // Order by timestamp
+            // Simular un tiempo de respuesta para el asistente
+            setTimeout(() => {
+                addMessageToChat(aiResponse, 'ai');
+                spinner.style.display = 'none'; // Ocultar spinner
+            }, 1000); // Retraso de 1 segundo
+        }
 
-            onSnapshot(q, (snapshot) => {
-                const ideas = [];
-                snapshot.forEach(doc => {
-                    ideas.push({ id: doc.id, ...doc.data() });
-                });
-                displayIdeas(ideas);
-                ideaSpinner.style.display = 'none'; // Hide spinner once loaded
-            }, (error) => {
-                console.error("Error fetching ideas:", error);
-                let errorMessage = 'Error al cargar las ideas. Inténtalo de nuevo más tarde.';
-                if (error.code === 'permission-denied') {
-                    errorMessage = 'Error de permisos: No se pueden cargar las ideas. Asegúrate de que las reglas de seguridad de Firestore permitan la lectura de la colección "ideas" para usuarios autenticados.';
-                }
-                ideaMessagesContainer.innerHTML = `<p class="text-red-400 text-center">${errorMessage}</p>`;
-                ideaSpinner.style.display = 'none';
-            });
 
-            sendIdeaBtn.addEventListener('click', async () => {
-                const name = ideaNameInput.value.trim();
-                const message = ideaMessageInput.value.trim();
+        // Listener para asegurar que el DOM esté completamente cargado antes de asignar elementos
+        document.addEventListener('DOMContentLoaded', () => {
+            // Asigna todos los elementos DOM aquí
+            gameModal = document.getElementById('game-modal');
+            internalRechargeModal = document.getElementById('internal-recharge-modal');
+            aiChatModal = document.getElementById('ai-chat-modal');
+            privacyPolicyModal = document.getElementById('privacy-policy-modal');
+            termsConditionsModal = document.getElementById('terms-conditions-modal');
+            messageModal = document.getElementById('message-modal');
 
-                if (!message) {
-                    showMessage('Campo Vacío', 'Por favor, escribe tu idea o sugerencia antes de enviarla.');
-                    return;
-                }
-                if (!db) {
-                    showMessage('Error de Base de Datos', 'La base de datos no está disponible. No se puede enviar la idea.');
-                    return;
-                }
+            closeModalBtn = document.getElementById('close-modal');
+            closeInternalRechargeModalBtn = document.getElementById('close-internal-recharge-modal');
+            closeAiChatModalBtn = document.getElementById('close-ai-chat-modal');
+            closePrivacyPolicyModalBtn = document.getElementById('close-privacy-policy-modal');
+            closeTermsConditionsModalBtn = document.getElementById('close-terms-conditions-modal');
+            closeMessageModalBtn = document.getElementById('close-message-modal');
 
-                ideaSpinner.style.display = 'block';
-                sendIdeaBtn.disabled = true;
+            freefireRechargeBtn = document.getElementById('freefire-recharge-btn');
+            bloodstrikeRechargeBtn = document.getElementById('bloodstrike-recharge-btn');
+            codmobileRechargeBtn = document.getElementById('codmobile-recharge-btn');
+            modalTitle = document.getElementById('modal-title');
+            freefireContent = document.getElementById('freefire-content');
+            bloodstrikeContent = document.getElementById('bloodstrike-content');
+            freefireDiamondOptions = document.getElementById('freefire-diamond-options');
+            bloodstrikeGoldOptions = document.getElementById('bloodstrike-gold-options');
+            freefireModalIdInput = document.getElementById('freefire-modal-id');
+            bloodstrikeModalIdInput = document.getElementById('bloodstrike-modal-id');
+            buyButton = document.getElementById('buy-button');
+            buyInternalButton = document.getElementById('buy-internal-button');
+            codmobileCpOptions = document.getElementById('codmobile-cp-options');
 
-                try {
-                    await addDoc(collection(db, `artifacts/${appId}/public/data/ideas`), {
-                        name: name || 'Anónimo',
-                        message: message,
-                        userId: userId, // Use the current user ID (anonymous or random)
-                        timestamp: serverTimestamp() // Firestore server timestamp
-                    });
-                    ideaMessageInput.value = ''; // Clear message input
-                    ideaNameInput.value = ''; // Clear name input
-                } catch (e) {
-                    console.error("Error adding document: ", e);
-                    let errorMessage = "Hubo un error al enviar tu idea. Por favor, inténtalo de nuevo.";
-                    if (e.code === 'permission-denied') {
-                        errorMessage = 'Error de permisos: No se puede enviar la idea. Asegúrate de que las reglas de seguridad de Firestore permitan la escritura en la colección "ideas" para usuarios autenticados.';
+            referralCtaBtn = document.getElementById('referral-cta-btn');
+            whatsappReferralLinkInput = document.getElementById('whatsapp-referral-link');
+            copyWhatsappLinkBtn = document.getElementById('copy-whatsapp-link-btn');
+
+            aiChatMessages = document.getElementById('ai-chat-messages');
+            aiChatInput = document.getElementById('ai-chat-input');
+            aiChatSendBtn = document.getElementById('ai-chat-send-btn');
+            aiChatSpinner = document.getElementById('ai-chat-spinner');
+
+            // Ahora que todos los elementos DOM están asignados, configura los listeners de eventos
+            setupEventListeners();
+            startRandomPurchaseNotifications();
+        });
+
+
+        // --- Lógica General de UI y Modales ---
+
+        function setupEventListeners() {
+            // Desplazamiento suave para los enlaces de navegación
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') { // Evitar el desplazamiento para enlaces vacíos
+                        e.preventDefault();
+                        const navContent = document.getElementById('nav-content');
+                        if (navContent.classList.contains('flex-grow')) {
+                            navContent.classList.toggle('hidden');
+                            navContent.classList.toggle('flex-grow');
+                        }
+                        return;
                     }
-                    showMessage('Error', errorMessage);
-                } finally {
-                    ideaSpinner.style.display = 'none';
-                    sendIdeaBtn.disabled = false;
-                }
-            });
-        }
 
-        // --- General UI and Modal Logic ---
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href === '#') { // Prevent scrolling for empty hash links
                     e.preventDefault();
+
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+
                     const navContent = document.getElementById('nav-content');
                     if (navContent.classList.contains('flex-grow')) {
                         navContent.classList.toggle('hidden');
                         navContent.classList.toggle('flex-grow');
                     }
+                });
+            });
+
+            // Alternar menú móvil
+            document.getElementById('nav-toggle').onclick = function () {
+                document.getElementById('nav-content').classList.toggle('hidden');
+                document.getElementById('nav-content').classList.toggle('flex-grow');
+            };
+
+            // Listeners de eventos para los botones de las tarjetas de juego (ahora abren modales)
+            freefireRechargeBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openGameModal('freefire');
+            });
+
+            bloodstrikeRechargeBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                openGameModal('bloodstrike');
+            });
+
+            codmobileRechargeBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                resetInternalRechargeModal();
+                internalRechargeModal.classList.add('show');
+            });
+
+            // Listener de evento para el botón "Solicitar Recarga Interna" (abre modal interno)
+            const openInternalRechargeModalBtn = document.getElementById('open-internal-recharge-modal-btn');
+            openInternalRechargeModalBtn.addEventListener('click', () => {
+                resetInternalRechargeModal();
+                internalRechargeModal.classList.add('show');
+            });
+
+            // Listeners de eventos para hacer clic en las *propias tarjetas* para abrir modales
+            const gameCards = document.querySelectorAll('.card[data-game]');
+
+            gameCards.forEach(card => {
+                card.addEventListener('click', (event) => {
+                    if (event.target !== freefireRechargeBtn &&
+                        event.target !== bloodstrikeRechargeBtn &&
+                        event.target !== codmobileRechargeBtn) {
+
+                        const gameType = card.dataset.game;
+                        if (gameType === 'freefire' || gameType === 'bloodstrike') {
+                            openGameModal(gameType);
+                        } else if (gameType === 'codmobile-internal') {
+                            resetInternalRechargeModal();
+                            internalRechargeModal.classList.add('show');
+                        }
+                    }
+                });
+            });
+
+            // Añadir manejadores de clic para las opciones de CP de COD Mobile
+            codmobileCpOptions.querySelectorAll('.cp-option').forEach(option => {
+                option.onclick = () => {
+                    document.querySelectorAll('.cp-option').forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    selectedCpAmount = option.dataset.cp;
+                    console.log(`Selected CP amount: ${selectedCpAmount}`);
+                };
+            });
+
+            // Manejar clic en el botón "Comprar y Enviar por WhatsApp" dentro del modal de Free Fire/Bloodstrike
+            buyButton.addEventListener('click', () => {
+                let gameId = '';
+                let message = '';
+                const whatsappNumber = '584124984938';
+
+                if (selectedGame === 'freefire') {
+                    gameId = freefireModalIdInput.value.trim();
+                    if (!selectedItem || !gameId) {
+                        showMessage('Error de Selección', 'Por favor, selecciona una cantidad de diamantes/tarjeta e ingresa tu ID de Free Fire.');
+                        return;
+                    }
+                    message = `Hola, quiero recargar ${selectedItem} para Free Fire. Mi ID es: ${gameId}. El precio es ${selectedPrice}. Adjunto el comprobante de pago.`;
+                } else if (selectedGame === 'bloodstrike') {
+                    gameId = bloodstrikeModalIdInput.value.trim();
+                    if (!selectedItem || !gameId) {
+                        showMessage('Error de Selección', 'Por favor, selecciona una cantidad de oro/pase e ingresa tu ID de Bloodstrike.');
+                        return;
+                    }
+                    message = `Hola, quiero recargar ${selectedItem} para Bloodstrike. Mi ID es: ${gameId}. El precio es ${selectedPrice}. Adjunto el comprobante de pago.`;
+                }
+
+                if (message) {
+                    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                    console.log("Generated WhatsApp Link (Free Fire/Bloodstrike):", whatsappLink);
+                    window.open(whatsappLink, '_blank');
+                    showPurchaseNotification({
+                        name: dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)].name,
+                        item: selectedItem,
+                        game: selectedGame === 'freefire' ? 'Free Fire' : 'Bloodstrike'
+                    });
+                    gameModal.classList.remove('show');
+                }
+            });
+
+            // Manejar clic en el botón "Comprar y Enviar por WhatsApp" dentro del modal de Recarga Interna (COD Mobile)
+            buyInternalButton.addEventListener('click', () => {
+                if (!selectedCpAmount) {
+                    showMessage('Error de Selección', 'Por favor, selecciona una cantidad de CP.');
                     return;
                 }
 
-                e.preventDefault();
+                const whatsappNumber = '584124984938';
+                const message = `¡Hola! Quiero hacer una recarga interna de ${selectedCpAmount} CP para COD Mobile.
 
-                document.querySelector(href).scrollIntoView({
-                    behavior: 'smooth'
+Para procesar tu recarga, por favor, realiza el pago a los siguientes datos:
+C.I: 32377208
+Banco: Banesco (0134)
+Número de Teléfono: 04124984938
+
+Una vez hecho el pago, envíame el comprobante por este chat. También, por favor, envíame los datos de tu cuenta de COD Mobile (usuario y contraseña, o el método que uses para iniciar sesión) para que podamos realizar la recarga directamente.
+
+¡Gracias por tu confianza en Gamers Tournaments! Estaremos atentos para ayudarte.`;
+
+                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                console.log("Generated WhatsApp Link (COD Mobile):", whatsappLink);
+                window.open(whatsappLink, '_blank');
+                showPurchaseNotification({
+                    name: dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)].name,
+                    item: selectedCpAmount + " CP",
+                    game: "COD Mobile"
                 });
+                internalRechargeModal.classList.remove('show');
+            });
 
-                const navContent = document.getElementById('nav-content');
-                if (navContent.classList.contains('flex-grow')) {
-                    navContent.classList.toggle('hidden');
-                    navContent.classList.toggle('flex-grow');
+            // --- Lógica de Cierre de Modales ---
+            closeModalBtn.addEventListener('click', () => {
+                gameModal.classList.remove('show');
+                resetModal();
+            });
+
+            closeInternalRechargeModalBtn.addEventListener('click', () => {
+                internalRechargeModal.classList.remove('show');
+                resetInternalRechargeModal();
+            });
+
+            closePrivacyPolicyModalBtn.addEventListener('click', () => {
+                privacyPolicyModal.classList.remove('show');
+            });
+
+            closeTermsConditionsModalBtn.addEventListener('click', () => {
+                termsConditionsModal.classList.remove('show');
+            });
+
+            closeAiChatModalBtn.addEventListener('click', () => {
+                aiChatModal.classList.remove('show');
+            });
+
+            // Cerrar modal al hacer clic fuera del contenido del modal
+            gameModal.addEventListener('click', (event) => {
+                if (event.target === gameModal) {
+                    gameModal.classList.remove('show');
+                    resetModal();
                 }
             });
-        });
 
-        // Toggle mobile menu
-        document.getElementById('nav-toggle').onclick = function () {
-            document.getElementById('nav-content').classList.toggle('hidden');
-            document.getElementById('nav-content').classList.toggle('flex-grow');
-        };
+            internalRechargeModal.addEventListener('click', (event) => {
+                if (event.target === internalRechargeModal) {
+                    internalRechargeModal.classList.remove('show');
+                    resetInternalRechargeModal();
+                }
+            });
 
-        // Function to reset main game modal content and selection
+            privacyPolicyModal.addEventListener('click', (event) => {
+                if (event.target === privacyPolicyModal) {
+                    privacyPolicyModal.classList.remove('show');
+                }
+            });
+
+            termsConditionsModal.addEventListener('click', (event) => {
+                if (event.target === termsConditionsModal) {
+                    termsConditionsModal.classList.remove('show');
+                }
+            });
+
+            aiChatModal.addEventListener('click', (event) => {
+                if (event.target === aiChatModal) {
+                    aiChatModal.classList.remove('show');
+                }
+            });
+
+            // Abrir modales de Política de Privacidad y Términos y Condiciones
+            document.getElementById('privacy-policy-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                privacyPolicyModal.classList.add('show');
+            });
+
+            document.getElementById('terms-conditions-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                termsConditionsModal.classList.add('show');
+            });
+
+            // Abrir modal de Chat de IA
+            document.getElementById('open-ai-chat-btn').addEventListener('click', () => {
+                aiChatModal.classList.add('show');
+                if (aiChatMessages.children.length === 0) {
+                    addMessageToChat('¡Hola! Soy tu asistente virtual de Gamers Tournaments. ¿En qué puedo ayudarte hoy?', 'ai');
+                }
+            });
+
+            // Preguntas rápidas para el chat de IA - ahora envían el mensaje directamente
+            document.querySelectorAll('.quick-question-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const question = button.dataset.question;
+                    sendChatMessage(question); // Enviar mensaje directamente
+                });
+            });
+
+            // Enviar mensaje de chat al hacer clic en el botón
+            document.getElementById('ai-chat-send-btn').addEventListener('click', () => {
+                const message = aiChatInput.value.trim();
+                if (message) {
+                    sendChatMessage(message);
+                }
+            });
+
+            // Enviar mensaje de chat al presionar Enter en el campo de entrada
+            document.getElementById('ai-chat-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const message = aiChatInput.value.trim();
+                    if (message) {
+                        sendChatMessage(message);
+                    }
+                }
+            });
+
+            // Lógica para el botón de Copiar/Abrir Enlace de Referido de WhatsApp
+            if (copyWhatsappLinkBtn) {
+                copyWhatsappLinkBtn.addEventListener('click', () => {
+                    if (whatsappReferralLinkInput) {
+                        whatsappReferralLinkInput.select();
+                        whatsappReferralLinkInput.setSelectionRange(0, 99999); // Para dispositivos móviles
+                        try {
+                            document.execCommand('copy');
+                            showMessage('Copiado', '¡Enlace copiado al portapapeles!');
+                        } catch (err) {
+                            console.error('Error al copiar el enlace: ', err);
+                            showMessage('Error al Copiar', 'No se pudo copiar el enlace. Por favor, cópialo manualmente.');
+                        }
+                    }
+                });
+            }
+
+            // Botón CTA de Referidos (marcador de posición por ahora)
+            referralCtaBtn.addEventListener('click', () => {
+                showMessage('Próximamente', '¡Genial! Pronto podrás generar tu enlace de referido y empezar a crecer la comunidad. ¡Estén atentos a las actualizaciones!');
+            });
+        }
+
+
+        // Función para restablecer el contenido y la selección del modal de juego principal
         function resetModal() {
             freefireModalIdInput.value = '';
             bloodstrikeModalIdInput.value = '';
@@ -1287,13 +1381,13 @@
             selectedGame = '';
         }
 
-        // Function to reset internal recharge modal content and selection
+        // Función para restablecer el contenido y la selección del modal de recarga interna
         function resetInternalRechargeModal() {
             document.querySelectorAll('.cp-option').forEach(opt => opt.classList.remove('selected'));
             selectedCpAmount = '';
         }
 
-        // Function to open the main game modal (for FF/BS)
+        // Función para abrir el modal de juego principal (para FF/BS)
         function openGameModal(gameType) {
             resetModal();
             selectedGame = gameType;
@@ -1327,126 +1421,8 @@
             gameModal.classList.add('show');
         }
 
-        // Event listeners for the main page game card buttons (now open modals)
-        freefireRechargeBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            openGameModal('freefire');
-        });
 
-        bloodstrikeRechargeBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            openGameModal('bloodstrike');
-        });
-
-        codmobileRechargeBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            resetInternalRechargeModal();
-            internalRechargeModal.classList.add('show');
-        });
-
-        // Event listener for the "Solicitar Recarga Interna" button (opens internal modal)
-        const openInternalRechargeModalBtn = document.getElementById('open-internal-recharge-modal-btn');
-        openInternalRechargeModalBtn.addEventListener('click', () => {
-            resetInternalRechargeModal();
-            internalRechargeModal.classList.add('show');
-        });
-
-        // Event listeners for clicking the *cards themselves* to open modals
-        const gameCards = document.querySelectorAll('.card[data-game]');
-
-        gameCards.forEach(card => {
-            card.addEventListener('click', (event) => {
-                if (event.target !== freefireRechargeBtn &&
-                    event.target !== bloodstrikeRechargeBtn &&
-                    event.target !== codmobileRechargeBtn) {
-
-                    const gameType = card.dataset.game;
-                    if (gameType === 'freefire' || gameType === 'bloodstrike') {
-                        openGameModal(gameType);
-                    } else if (gameType === 'codmobile-internal') {
-                        resetInternalRechargeModal();
-                        internalRechargeModal.classList.add('show');
-                    }
-                }
-            });
-        });
-
-        // Add click handlers for COD Mobile CP options
-        codmobileCpOptions.querySelectorAll('.cp-option').forEach(option => {
-            option.onclick = () => {
-                document.querySelectorAll('.cp-option').forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                selectedCpAmount = option.dataset.cp;
-                console.log(`Selected CP amount: ${selectedCpAmount}`);
-            };
-        });
-
-        // Handle "Comprar y Enviar por WhatsApp" button click inside Free Fire/Bloodstrike modal
-        buyButton.addEventListener('click', () => {
-            let gameId = '';
-            let message = '';
-            const whatsappNumber = '584124984938';
-
-            if (selectedGame === 'freefire') {
-                gameId = freefireModalIdInput.value.trim();
-                if (!selectedItem || !gameId) {
-                    showMessage('Error de Selección', 'Por favor, selecciona una cantidad de diamantes/tarjeta e ingresa tu ID de Free Fire.');
-                    return;
-                }
-                message = `Hola, quiero recargar ${selectedItem} para Free Fire. Mi ID es: ${gameId}. El precio es ${selectedPrice}. Adjunto el comprobante de pago.`;
-            } else if (selectedGame === 'bloodstrike') {
-                gameId = bloodstrikeModalIdInput.value.trim();
-                if (!selectedItem || !gameId) {
-                    showMessage('Error de Selección', 'Por favor, selecciona una cantidad de oro/pase e ingresa tu ID de Bloodstrike.');
-                    return;
-                }
-                message = `Hola, quiero recargar ${selectedItem} para Bloodstrike. Mi ID es: ${gameId}. El precio es ${selectedPrice}. Adjunto el comprobante de pago.`;
-            }
-
-            if (message) {
-                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                console.log("Generated WhatsApp Link (Free Fire/Bloodstrike):", whatsappLink);
-                window.open(whatsappLink, '_blank');
-                showPurchaseNotification({
-                    name: dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)].name,
-                    item: selectedItem,
-                    game: selectedGame === 'freefire' ? 'Free Fire' : 'Bloodstrike'
-                });
-                gameModal.classList.remove('show');
-            }
-        });
-
-        // Handle "Comprar y Enviar por WhatsApp" button click inside Internal Recharge modal (COD Mobile)
-        buyInternalButton.addEventListener('click', () => {
-            if (!selectedCpAmount) {
-                showMessage('Error de Selección', 'Por favor, selecciona una cantidad de CP.');
-                return;
-            }
-
-            const whatsappNumber = '584124984938';
-            const message = `¡Hola! Quiero hacer una recarga interna de ${selectedCpAmount} CP para COD Mobile.
-
-Para procesar tu recarga, por favor, realiza el pago a los siguientes datos:
-C.I: 32377208
-Banco: Banesco (0134)
-Número de Teléfono: 04124984938
-
-Una vez hecho el pago, envíame el comprobante por este chat. También, por favor, envíame los datos de tu cuenta de COD Mobile (usuario y contraseña, o el método que uses para iniciar sesión) para que podamos realizar la recarga directamente.
-
-¡Gracias por tu confianza en Gamers Tournaments! Estaremos atentos para ayudarte.`;
-
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            console.log("Generated WhatsApp Link (COD Mobile):", whatsappLink);
-            window.open(whatsappLink, '_blank');
-            showPurchaseNotification({
-                name: dummyPurchases[Math.floor(Math.random() * dummyPurchases.length)].name,
-                item: selectedCpAmount + " CP",
-                game: "COD Mobile"
-            });
-            internalRechargeModal.classList.remove('show');
-        });
-
-        // Recent Purchase Notification Logic
+        // Lógica de Notificaciones de Compras Recientes
         const purchaseNotificationsContainer = document.getElementById('purchase-notifications-container');
 
         const dummyPurchases = [
@@ -1499,123 +1475,7 @@ Una vez hecho el pago, envíame el comprobante por este chat. También, por favo
             }, Math.random() * (20000 - 10000) + 10000);
         }
 
-        document.addEventListener('DOMContentLoaded', startRandomPurchaseNotifications);
-
-        // --- Modal Closing Logic ---
-        closeModalBtn.addEventListener('click', () => {
-            gameModal.classList.remove('show');
-            resetModal();
-        });
-
-        closeInternalRechargeModalBtn.addEventListener('click', () => {
-            internalRechargeModal.classList.remove('show');
-            resetInternalRechargeModal();
-        });
-
-        closePrivacyPolicyModalBtn.addEventListener('click', () => {
-            privacyPolicyModal.classList.remove('show');
-        });
-
-        closeTermsConditionsModalBtn.addEventListener('click', () => {
-            termsConditionsModal.classList.remove('show');
-        });
-
-        closeAiChatModalBtn.addEventListener('click', () => {
-            aiChatModal.classList.remove('show');
-        });
-
-        // Close modal when clicking outside the modal content
-        gameModal.addEventListener('click', (event) => {
-            if (event.target === gameModal) {
-                gameModal.classList.remove('show');
-                resetModal();
-            }
-        });
-
-        internalRechargeModal.addEventListener('click', (event) => {
-            if (event.target === internalRechargeModal) {
-                internalRechargeModal.classList.remove('show');
-                resetInternalRechargeModal();
-            }
-        });
-
-        privacyPolicyModal.addEventListener('click', (event) => {
-            if (event.target === privacyPolicyModal) {
-                privacyPolicyModal.classList.remove('show');
-            }
-        });
-
-        termsConditionsModal.addEventListener('click', (event) => {
-            if (event.target === termsConditionsModal) {
-                termsConditionsModal.classList.remove('show');
-            }
-        });
-
-        aiChatModal.addEventListener('click', (event) => {
-            if (event.target === aiChatModal) {
-                aiChatModal.classList.remove('show');
-            }
-        });
-
-        // Open Privacy Policy and Terms & Conditions modals
-        document.getElementById('privacy-policy-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            privacyPolicyModal.classList.add('show');
-        });
-
-        document.getElementById('terms-conditions-link').addEventListener('click', (e) => {
-            e.preventDefault();
-            termsConditionsModal.classList.add('show');
-        });
-
-        // AI Chat Modal (Placeholder for now, no actual AI integration in this version)
-        document.getElementById('open-ai-chat-btn').addEventListener('click', () => {
-            aiChatModal.classList.add('show');
-            const chatMessagesContainer = document.getElementById('ai-chat-messages');
-            if (chatMessagesContainer.children.length === 0) {
-                const initialAiMessage = document.createElement('div');
-                initialAiMessage.classList.add('chat-message', 'ai');
-                initialAiMessage.textContent = '¡Hola! Soy tu asistente virtual de Gamers Tournaments. ¿En qué puedo ayudarte hoy?';
-                chatMessagesContainer.appendChild(initialAiMessage);
-            }
-        });
-
-        // Quick questions for AI chat (example, no AI logic yet)
-        document.querySelectorAll('.quick-question-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const question = button.dataset.question;
-                const chatInput = document.getElementById('ai-chat-input');
-                chatInput.value = question;
-            });
-        });
-
-        // Send chat message (example, no AI logic yet)
-        document.getElementById('ai-chat-send-btn').addEventListener('click', () => {
-            const chatInput = document.getElementById('ai-chat-input');
-            const message = chatInput.value.trim();
-            if (message) {
-                const chatMessagesContainer = document.getElementById('ai-chat-messages');
-                const userMessageDiv = document.createElement('div');
-                userMessageDiv.classList.add('chat-message', 'user');
-                userMessageDiv.textContent = message;
-                chatMessagesContainer.appendChild(userMessageDiv);
-                chatInput.value = '';
-                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-
-                const spinner = document.getElementById('ai-chat-spinner');
-                spinner.style.display = 'block';
-                setTimeout(() => {
-                    spinner.style.display = 'none';
-                    const aiResponseDiv = document.createElement('div');
-                    aiResponseDiv.classList.add('chat-message', 'ai');
-                    aiResponseDiv.textContent = `Gracias por tu pregunta: "${message}". En este momento, no tengo una respuesta programada para eso, pero nuestro equipo revisará tu consulta.`;
-                    chatMessagesContainer.appendChild(aiResponseDiv);
-                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-                }, 1500);
-            }
-        });
-
-        // New: General Message Modal Functions
+        // Nueva: Funciones de Modal de Mensaje General
         const messageModalTitle = document.getElementById('message-modal-title');
         const messageModalText = document.getElementById('message-modal-text');
         const messageModalOkBtn = document.getElementById('message-modal-ok-btn');
@@ -1645,28 +1505,6 @@ Una vez hecho el pago, envíame el comprobante por este chat. También, por favo
                 }
             });
         }
-
-        // WhatsApp Referral Link Copy/Open
-        if (copyWhatsappLinkBtn) {
-            copyWhatsappLinkBtn.addEventListener('click', () => {
-                if (whatsappReferralLinkInput) {
-                    whatsappReferralLinkInput.select();
-                    whatsappReferralLinkInput.setSelectionRange(0, 99999); // For mobile devices
-                    try {
-                        document.execCommand('copy');
-                        showMessage('Copiado', '¡Enlace copiado al portapapeles!');
-                    } catch (err) {
-                        console.error('Error al copiar el enlace: ', err);
-                        showMessage('Error al Copiar', 'No se pudo copiar el enlace. Por favor, cópialo manualmente.');
-                    }
-                }
-            });
-        }
-
-        // Referral CTA Button (placeholder for now)
-        referralCtaBtn.addEventListener('click', () => {
-            showMessage('Próximamente', '¡Genial! Pronto podrás generar tu enlace de referido y empezar a crecer la comunidad. ¡Estén atentos a las actualizaciones!');
-        });
     </script>
 </body>
 </html>
