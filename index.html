@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -430,16 +432,6 @@
             text-align: left;
         }
 
-        .step-item {
-            background-color: #1a1a2e;
-            padding: 1rem 1.5rem;
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border: 1px solid rgba(233, 69, 96, 0.5);
-        }
-
         .step-item span {
             font-size: 1.5rem;
             font-weight: 700;
@@ -499,8 +491,18 @@
                     <li><a href="#torneos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Torneos</a></li>
                     <li><a href="#sobre-nosotros" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Sobre Nosotros</a></li>
                     <li><a href="#atencion-cliente" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Contacto y Horario</a></li>
-                    <li><a href="#programa-referidos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white transition duration-300">Programa de Referidos</a></li>
-                    <!-- Eliminada la opción "Cuenta" -->
+                    <li><a href="#programa-referidos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-6 transition duration-300">Programa de Referidos</a></li>
+                    <!-- Social Media Icons in Navbar -->
+                    <li>
+                        <a href="https://www.instagram.com/gamertournaments/" target="_blank" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white ml-4 transition duration-300">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.tiktok.com/@the.gamer.tournam" target="_blank" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white ml-4 transition duration-300">
+                            <i class="fab fa-tiktok text-2xl"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -569,8 +571,8 @@
                 </div>
                 <!-- Game Card for COD Mobile now opens the internal recharge modal -->
                 <div class="card text-center" data-game="codmobile-internal">
-                    <!-- Updated COD Mobile image URL -->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/App_Icon_COD_Mobile.png" alt="COD Mobile Logo" class="mx-auto mb-4 rounded-full shadow-lg">
+                    <!-- Updated COD Mobile image URL to a placeholder -->
+                    <img src="https://placehold.co/150x150/e94560/ffffff?text=COD+Mobile" alt="COD Mobile Logo" class="mx-auto mb-4 rounded-full shadow-lg">
                     <h3 class="text-2xl font-semibold text-white mb-3">COD Mobile</h3>
                     <p class="text-gray-300 mb-4">Compra CP para Call of Duty Mobile con tu UID y desbloquea contenido exclusivo.</p>
                     <button id="codmobile-recharge-btn" class="btn-primary w-full">Recargar CP</button>
@@ -747,16 +749,16 @@
                 <div class="mb-8">
                     <label class="block text-white text-xl font-bold mb-4 text-center">Selecciona la cantidad de diamantes:</label>
                     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" id="freefire-diamond-options">
-                        <div class="diamond-option" data-diamonds="110" data-price="125 Bs">110 Diamantes - 135 Bs</div>
-                        <div class="diamond-option" data-diamonds="220" data-price="250 Bs">220 Diamantes - 270 Bs</div>
-                        <div class="diamond-option" data-diamonds="341" data-price="375 Bs">341 Diamantes - 405 Bs</div>
-                        <div class="diamond-option" data-diamonds="572" data-price="625 Bs">572 Diamantes - 675 Bs</div>
-                        <div class="diamond-option" data-diamonds="682" data-price="750 Bs">682 Diamantes - 810 Bs</div>
+                        <div class="diamond-option" data-diamonds="110" data-price="135 Bs">110 Diamantes - 135 Bs</div>
+                        <div class="diamond-option" data-diamonds="220" data-price="270 Bs">220 Diamantes - 270 Bs</div>
+                        <div class="diamond-option" data-diamonds="341" data-price="405 Bs">341 Diamantes - 405 Bs</div>
+                        <div class="diamond-option" data-diamonds="572" data-price="675 Bs">572 Diamantes - 675 Bs</div>
+                        <div class="diamond-option" data-diamonds="682" data-price="810 Bs">682 Diamantes - 810 Bs</div>
                         <div class="diamond-option" data-diamonds="913" data-price="1125 Bs">913 Diamantes - 1125 Bs</div>
-                        <div class="diamond-option" data-diamonds="1166" data-price="1.450 Bs">1166 Diamantes - 1.500 Bs</div>
+                        <div class="diamond-option" data-diamonds="1166" data-price="1.500 Bs">1166 Diamantes - 1.500 Bs</div>
                         <div class="diamond-option" data-diamonds="Tarjeta Basica" data-price="50 Bs">Tarjeta Básica - 50 Bs</div>
-                        <div class="diamond-option" data-diamonds="Tarjeta Semanal" data-price="280 Bs">Tarjeta Semanal - 300 Bs</div>
-                        <div class="diamond-option" data-diamonds="Tarjeta Mensual" data-price="1.400 Bs">Tarjeta Mensual - 1.450 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Semanal" data-price="300 Bs">Tarjeta Semanal - 300 Bs</div>
+                        <div class="diamond-option" data-diamonds="Tarjeta Mensual" data-price="1.450 Bs">Tarjeta Mensual - 1.450 Bs</div>
                     </div>
                 </div>
 
