@@ -7,9 +7,9 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -57,7 +57,6 @@
             border-radius: 1rem;
             padding: 1.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
             transition: transform 0.2s ease;
             display: flex;
             flex-direction: column;
@@ -288,7 +287,7 @@
             <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden" id="nav-content">
                 <ul class="text-base lg:flex justify-end flex-1 items-center">
                     <li><a href="#recargas-id" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4 transition duration-300">Recargas</a></li>
-                     <li><a href="#referidos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4 transition duration-300">Referidos</a></li>
+                    <li><a href="#referidos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4 transition duration-300">Comunidad</a></li>
                     <li><a href="#torneos" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4 transition duration-300">Torneos</a></li>
                     <li><a href="#sobre-nosotros" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4 transition duration-300">Nosotros</a></li>
                     <li><a href="#atencion-cliente" class="block mt-4 lg:inline-block lg:mt-0 text-gray-300 hover:text-white mr-4 transition duration-300">Contacto</a></li>
@@ -323,26 +322,26 @@
                     <img src="https://i.pinimg.com/1200x/6b/8c/07/6b8c0788bf117781fee70e8627cf6b44.jpg" alt="Logo de Free Fire" class="h-24 w-24 mx-auto mb-4 rounded-full shadow-lg bg-white p-2">
                     <h3 class="text-2xl font-semibold text-white mb-3">Free Fire</h3>
                     <p class="text-gray-300 mb-4 flex-grow">Recarga diamantes directamente a tu cuenta con tu ID de jugador.</p>
-                    <button id="freefire-recharge-btn" class="btn-primary w-full mt-auto">Recargar Diamantes</button>
+                    <button class="btn-primary w-full mt-auto recharge-btn">Recargar Diamantes</button>
                 </div>
                 <!-- Game Card - Bloodstrike -->
                 <div class="card text-center" data-game="bloodstrike">
                     <img src="https://i.pinimg.com/736x/94/76/bb/9476bb2a4d3910f6c63819d27abd24ef.jpg" alt="Logo de Bloodstrike" class="h-24 w-24 mx-auto mb-4 rounded-full shadow-lg">
                     <h3 class="text-2xl font-semibold text-white mb-3">Bloodstrike</h3>
                     <p class="text-gray-300 mb-4 flex-grow">Consigue oro y paquetes especiales para Bloodstrike usando tu ID.</p>
-                    <button id="bloodstrike-recharge-btn" class="btn-primary w-full mt-auto">Recargar Oro</button>
+                    <button class="btn-primary w-full mt-auto recharge-btn">Recargar Oro</button>
                 </div>
                 <!-- Game Card - Call of Duty Mobile -->
                 <div class="card text-center" data-game="codmobile">
                     <img src="https://static.wikia.nocookie.net/callofduty/images/d/d6/App_Icon_COD_Mobile.png/revision/latest?cb=20190601124644" alt="Logo de Call of Duty Mobile" class="h-24 w-24 mx-auto mb-4 rounded-full shadow-lg bg-white p-1">
                     <h3 class="text-2xl font-semibold text-white mb-3">Call of Duty: Mobile</h3>
                     <p class="text-gray-300 mb-4 flex-grow">Compra CP (COD Points) para obtener pases de batalla, armas y más.</p>
-                    <button id="codmobile-recharge-btn" class="btn-primary w-full mt-auto">Recargar CP</button>
+                    <button class="btn-primary w-full mt-auto recharge-btn">Recargar CP</button>
                 </div>
             </div>
         </section>
         
-        <!-- NEW Referidos Section -->
+        <!-- Comunidad Section -->
         <section id="referidos" class="py-16 my-12 bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-800 rounded-2xl shadow-2xl relative overflow-hidden">
              <div class="absolute inset-0 bg-black opacity-30"></div>
              <div class="container mx-auto px-6 text-center relative z-10">
@@ -350,12 +349,12 @@
                      <i class="fas fa-users text-4xl text-white"></i>
                  </div>
                  <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
-                     ¡Invita a un Amigo y <span class="text-yellow-300">Crece con Nosotros!</span>
+                     ¡Únete a la Comunidad y <span class="text-yellow-300">Crece con Nosotros!</span>
                  </h2>
                  <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-8">
-                     Comparte la emoción de Gamers Tournaments y ayúdanos a hacer crecer nuestra comunidad. ¡Más jugadores significan torneos más grandes y épicos para todos!
+                     Forma parte de nuestro grupo de WhatsApp para enterarte de los torneos, promociones y eventos especiales antes que nadie. ¡Más jugadores significan torneos más grandes y épicos para todos!
                  </p>
-                 <a href="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L?mode=ac_t" target="_blank" class="btn-primary inline-block text-lg transform hover:scale-110 transition-transform duration-300">
+                 <a href="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L" target="_blank" class="btn-primary inline-block text-lg transform hover:scale-110 transition-transform duration-300">
                      <i class="fab fa-whatsapp mr-2"></i> Unirse a la Comunidad
                  </a>
              </div>
@@ -367,27 +366,27 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Tournament Card 1 -->
                 <div class="card">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Torneo de Free Fire: Gana por Cada Kill</h3>
-                    <p class="text-gray-300 mb-4">¡Participa en nuestros torneos y gana dinero real por cada eliminación! No importa si ganas o pierdes la partida, ¡cada kill cuenta!</p>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Torneo de Free Fire: Gana por Kill</h3>
+                    <p class="text-gray-300 mb-4">¡Participa y gana dinero real por cada eliminación! No importa si ganas o pierdes la partida, ¡cada kill cuenta!</p>
                     <ul class="list-disc list-inside text-gray-300 mb-4">
-                        <li>Fecha: ¡Siempre activos!</li>
-                        <li>Hora: 9:00 PM (Hora Venezuela)</li>
-                        <li>Premios: $1 USD por cada kill (muerte)</li>
-                        <li>Modalidad: Solitario, Dúo y Escuadra</li>
+                        <li><strong>Próxima Fecha:</strong> Sábado 16/08</li>
+                        <li><strong>Hora:</strong> 9:00 PM (Hora Venezuela)</li>
+                        <li><strong>Premios:</strong> $1 USD por cada kill (muerte)</li>
+                        <li><strong>Modalidad:</strong> Solitario</li>
                     </ul>
-                    <button class="btn-primary w-full">Inscribirse</button>
+                    <button class="btn-primary w-full tournament-signup-btn" data-game="Free Fire" data-price="1.5" data-mode="Solitario" data-date="Sábado 16/08">Inscribirse</button>
                 </div>
                 <!-- Tournament Card 2 -->
                 <div class="card">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Copa Bloodstrike Pro: Desafío por Recompensas</h3>
-                    <p class="text-gray-300 mb-4">Compite contra los mejores en Bloodstrike y acumula kills para ganar grandes recompensas y el título de campeón.</p>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Torneo Bloodstrike</h3>
+                    <p class="text-gray-300 mb-4">Compite en solitario contra los mejores y acumula kills para ganar grandes recompensas y el título de campeón.</p>
                     <ul class="list-disc list-inside text-gray-300 mb-4">
-                        <li>Fecha: ¡Siempre activos!</li>
-                        <li>Hora: 9:00 PM (Hora Venezuela)</li>
-                        <li>Premios: $1 USD por cada kill (muerte) + Bonificaciones</li>
-                        <li>Modalidad: Solitario, Dúo y Escuadra</li>
+                        <li><strong>Próxima Fecha:</strong> Sábado 16/08</li>
+                        <li><strong>Horario:</strong> Todos los fines de semana</li>
+                        <li><strong>Premios:</strong> $1 USD por cada kill (muerte) + Bonificaciones</li>
+                        <li><strong>Modalidad:</strong> Solitario</li>
                     </ul>
-                    <button class="btn-primary w-full">Ver Detalles</button>
+                    <button class="btn-primary w-full tournament-signup-btn" data-game="Bloodstrike" data-price="1.5" data-mode="Solitario" data-date="Sábado 16/08">Inscribirse</button>
                 </div>
             </div>
         </section>
@@ -411,16 +410,29 @@
                 </p>
                 <ul class="list-disc list-inside text-gray-300 mb-6 space-y-3">
                     <li><strong class="text-white">WhatsApp:</strong> <a href="https://wa.me/584124984938" class="text-e94560 hover:underline" target="_blank">+58 412 498 4938</a></li>
-                    <li><strong class="text-white">Horario de Atención:</strong> Todos los días, 10:00 AM - 10:00 PM (Hora Venezuela)</li>
+                    <li><strong class="text-white">Horario de Atención:</strong> Todos los días, 9:00 AM - 9:30 PM (Hora Venezuela)</li>
                 </ul>
                 <p class="text-gray-300 text-lg mb-6">
                     ¡Únete a nuestro grupo de WhatsApp para estar al tanto de los próximos torneos y novedades!
-                    <a href="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L?mode=ac_t" target="_blank" class="btn-primary inline-block mt-4">Unirse al Grupo</a>
+                    <a href="https://chat.whatsapp.com/FISlLCUAJcA8xrjmCZeE3L" target="_blank" class="btn-primary inline-block mt-4">Unirse al Grupo</a>
                 </p>
             </div>
         </section>
 
     </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-center py-6">
+        <div class="container mx-auto">
+            <p class="text-gray-400">&copy; 2024 Gamers Tournaments. Todos los derechos reservados.</p>
+            <div class="mt-4">
+                <a href="#" id="terms-link" class="text-gray-400 hover:text-white mx-2">Términos y Condiciones</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" id="privacy-link" class="text-gray-400 hover:text-white mx-2">Políticas de Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
 
     <!-- Floating Chat Button -->
     <a href="https://wa.me/584124984938" target="_blank" id="open-ai-chat-btn" class="floating-chat-btn">
@@ -430,7 +442,7 @@
     <!-- Modal Structure for Game Top-up -->
     <div id="game-modal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close-btn" id="close-modal">&times;</button>
+            <button class="modal-close-btn" data-modal-id="game-modal">&times;</button>
             <h3 id="modal-title" class="text-2xl md:text-3xl font-bold text-e94560 mb-6 text-center"></h3>
 
             <!-- Content for Free Fire -->
@@ -539,10 +551,44 @@
         </div>
     </div>
 
+    <!-- Modal for Tournament Signup -->
+    <div id="tournament-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="tournament-modal">&times;</button>
+            <h3 id="tournament-modal-title" class="text-2xl md:text-3xl font-bold text-e94560 mb-6 text-center"></h3>
+            
+            <div class="space-y-4 text-lg text-center">
+                <p>Para completar tu inscripción, por favor sigue estos pasos:</p>
+                
+                <div class="p-4 bg-gray-800 rounded-lg border border-e94560">
+                    <h4 class="text-xl font-bold text-e94560 mb-3">PASO 1: Paga la Inscripción</h4>
+                    <p class="text-white font-bold text-2xl mb-3">Costo: <span id="tournament-modal-price"></span> USD</p>
+                    <p class="text-gray-300 mb-3">Usa los siguientes datos para el pago:</p>
+                    <img src="https://i.imgur.com/adDC4Mp.jpeg" alt="Datos de Pago Móvil" class="mx-auto rounded-lg shadow-lg mb-4 max-w-xs">
+                    <ul class="list-none text-gray-200 text-center space-y-1">
+                        <li><strong>Banco:</strong> 0134 Banesco</li>
+                        <li><strong>C.I:</strong> V-32.377.208</li>
+                        <li><strong>Teléfono:</strong> 0412-4984938</li>
+                        <li><strong>(Pago Móvil)</strong></li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-gray-800 rounded-lg">
+                    <h4 class="text-xl font-bold text-e94560 mb-3">PASO 2: Envía tu Comprobante</h4>
+                    <p class="text-gray-300 mb-4">Haz clic en el botón de abajo para enviar tu comprobante de pago y tu ID de jugador por WhatsApp.</p>
+                    <a href="#" id="tournament-whatsapp-btn" target="_blank" class="btn-primary text-lg px-6 py-3 w-full md:w-auto">
+                        <i class="fab fa-whatsapp mr-2"></i>Completar Inscripción
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- General Message Modal -->
     <div id="message-modal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close-btn" id="close-message-modal">&times;</button>
+            <button class="modal-close-btn" data-modal-id="message-modal">&times;</button>
             <h3 id="message-modal-title" class="text-3xl font-bold text-e94560 mb-6 text-center"></h3>
             <p id="message-modal-text" class="text-gray-300 text-lg mb-6 text-center"></p>
             <div class="text-center">
@@ -554,7 +600,7 @@
     <!-- Modal for Terms and Conditions -->
     <div id="terms-conditions-modal" class="modal-overlay">
         <div class="modal-content">
-            <button class="modal-close-btn" id="close-terms-conditions-modal">&times;</button>
+            <button class="modal-close-btn" data-modal-id="terms-conditions-modal">&times;</button>
             <h3 class="text-3xl font-bold text-e94560 mb-6 text-center">Términos y Condiciones</h3>
             <div class="text-gray-300 text-base space-y-4">
                 <p>Al utilizar los servicios de Gamers Tournaments, aceptas los siguientes términos y condiciones:</p>
@@ -562,254 +608,250 @@
                 <p>Gamers Tournaments ofrece servicios de recarga de créditos y divisas para juegos (Free Fire, Bloodstrike, COD Mobile) y la organización de torneos con premios en efectivo basados en kills.</p>
                 <h4 class="font-bold text-white">2. Recargas de Juegos</h4>
                 <p>Nos comprometemos a que todas las recargas sean procesadas de manera eficiente y lleguen a tu cuenta de juego en su totalidad.</p>
-                <ul class="list-disc list-inside pl-4">
-                    <li>Las recargas de <strong>Bloodstrike</strong> y <strong>Free Fire</strong> se realizan por ID y suelen tardar entre 5 y 60 minutos.</li>
-                    <li>La recarga de <strong>Call of Duty: Mobile</strong> se realiza accediendo a la cuenta del jugador y se coordina directamente por WhatsApp para garantizar la seguridad.</li>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Es responsabilidad del cliente proporcionar el ID de jugador correcto. No nos hacemos responsables por recargas a IDs incorrectos.</li>
+                    <li>Las recargas de CP para COD Mobile se coordinan a través de WhatsApp debido a la naturaleza del proceso.</li>
                 </ul>
-                <p>Es responsabilidad del usuario proporcionar la ID de juego correcta. No nos hacemos responsables por errores en la ID proporcionada por el usuario.</p>
-                <h4 class="font-bold text-white">3. Política de Reembolsos</h4>
-                <p>No se realizarán reembolsos por recargas una vez que el servicio haya sido procesado y entregado correctamente. Los reembolsos solo se considerarán en casos excepcionales y justificados. La decisión final sobre cualquier reembolso recae exclusivamente en Gamers Tournaments.</p>
-                <h4 class="font-bold text-white">4. Participación en Torneos</h4>
-                <p>La participación en torneos está sujeta a las reglas específicas de cada evento. Gamers Tournaments se reserva el derecho de descalificar a cualquier participante que viole las reglas o muestre comportamiento antideportivo.</p>
-                <h4 class="font-bold text-white">5. Limitación de Responsabilidad</h4>
-                <p>Gamers Tournaments no será responsable de pérdidas o daños causados por factores fuera de nuestro control (fallas de Internet, problemas con servidores de juego, etc.).</p>
-                <h4 class="font-bold text-white">6. Modificaciones de los Términos</h4>
-                <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento.</p>
+                <h4 class="font-bold text-white">3. Torneos</h4>
+                <p>Los torneos se rigen por las reglas específicas de cada evento, que serán comunicadas a través de nuestro grupo de WhatsApp.</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>La inscripción se confirma una vez recibido el pago.</li>
+                    <li>Los premios se pagan en base a las kills confirmadas al final del torneo.</li>
+                </ul>
+                 <h4 class="font-bold text-white">4. Pagos</h4>
+                 <p>Aceptamos pagos a través de Pago Móvil en Venezuela. Los datos de pago se proporcionan durante el proceso de compra o inscripción.</p>
+                 <h4 class="font-bold text-white">5. Privacidad</h4>
+                 <p>Respetamos tu privacidad. Tu ID de jugador y datos de contacto solo se utilizarán para procesar tus compras y comunicar información sobre nuestros servicios. No compartiremos tu información con terceros.</p>
             </div>
         </div>
     </div>
 
+    <!-- Modal for Privacy Policy -->
+    <div id="privacy-policy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn" data-modal-id="privacy-policy-modal">&times;</button>
+            <h3 class="text-3xl font-bold text-e94560 mb-6 text-center">Políticas de Privacidad</h3>
+            <div class="text-gray-300 text-base space-y-4">
+                <p>En Gamers Tournaments, nos tomamos muy en serio tu privacidad. Esta política describe qué información recopilamos y cómo la usamos.</p>
+                <h4 class="font-bold text-white">1. Información que Recopilamos</h4>
+                <ul class="list-disc list-inside ml-4">
+                    <li><strong>ID de Jugador:</strong> Para procesar las recargas de diamantes, oro o CP.</li>
+                    <li><strong>Nombre de Usuario:</strong> Para confirmar la identidad en el juego.</li>
+                    <li><strong>Número de WhatsApp:</strong> Para confirmar pagos, inscripciones y proporcionar soporte.</li>
+                </ul>
+                <h4 class="font-bold text-white">2. Cómo Usamos tu Información</h4>
+                <p>Tu información se utiliza exclusivamente para:</p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Procesar tus recargas y compras.</li>
+                    <li>Registrarte en torneos.</li>
+                    <li>Contactarte para confirmar transacciones y ofrecerte soporte.</li>
+                    <li>Informarte sobre nuevos torneos, ofertas y eventos a través de nuestro grupo de WhatsApp.</li>
+                </ul>
+                <h4 class="font-bold text-white">3. Seguridad de la Información</h4>
+                <p>No compartimos tu información personal con terceros. Todos los datos se manejan de forma segura y confidencial.</p>
+                 <h4 class="font-bold text-white">4. Contacto</h4>
+                 <p>Si tienes alguna pregunta sobre nuestras políticas de privacidad, no dudes en contactarnos a través de nuestro WhatsApp.</p>
+            </div>
+        </div>
+    </div>
+    
     <!-- Live Purchase Notification Container -->
     <div id="notification-container"></div>
 
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 bg-opacity-80 backdrop-blur-sm py-8 mt-12 text-center text-gray-400">
-        <div class="container mx-auto px-4">
-            <p>&copy; 2025 Gamers Tournaments. Todos los derechos reservados.</p>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" id="terms-conditions-link" class="hover:text-white transition duration-300">Términos y Condiciones</a>
-            </div>
-        </div>
-    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Navbar Toggle for Mobile ---
+            const navToggle = document.getElementById('nav-toggle');
+            const navContent = document.getElementById('nav-content');
+            navToggle.addEventListener('click', function() {
+                navContent.classList.toggle('hidden');
+            });
 
-    <script type="module">
-        // DOM Element variables
-        let gameModal, messageModal, termsConditionsModal;
-        let closeModalBtn, closeMessageModalBtn, closeTermsConditionsModalBtn;
-        let freefireRechargeBtn, bloodstrikeRechargeBtn, codmobileRechargeBtn, modalTitle, freefireContent, bloodstrikeContent, codmobileContent, gameIdInput, buyButton, commonModalSteps;
-        let termsConditionsLink;
+            // --- Modal Handling ---
+            const gameModal = document.getElementById('game-modal');
+            const tournamentModal = document.getElementById('tournament-modal');
+            const messageModal = document.getElementById('message-modal');
+            const termsModal = document.getElementById('terms-conditions-modal');
+            const privacyModal = document.getElementById('privacy-policy-modal');
 
-        // State variables
-        let selectedGame = '';
-        let selectedItem = '';
-        let selectedPrice = '';
-
-        // Show a generic message to the user
-        function showMessage(title, text) {
-            const messageModalTitle = document.getElementById('message-modal-title');
-            const messageModalText = document.getElementById('message-modal-text');
-            messageModalTitle.textContent = title;
-            messageModalText.textContent = text;
-            messageModal.classList.add('show');
-        }
-
-        // Reset modal state
-        function resetModal() {
-            gameIdInput.value = '';
-            document.querySelectorAll('.recharge-option').forEach(opt => opt.classList.remove('selected'));
-            selectedItem = '';
-            selectedPrice = '';
-            selectedGame = '';
-        }
-
-        // Open and configure the game modal
-        function openGameModal(gameType) {
-            resetModal();
-            selectedGame = gameType;
-            document.querySelectorAll('.game-modal-section').forEach(section => section.classList.add('hidden'));
+            const modalTitle = document.getElementById('modal-title');
+            const gameIdInput = document.getElementById('game-modal-id');
+            const buyButton = document.getElementById('buy-button');
             
-            commonModalSteps.style.display = 'block'; // Show common steps by default
+            const gameContentSections = {
+                freefire: document.getElementById('freefire-content'),
+                bloodstrike: document.getElementById('bloodstrike-content'),
+                codmobile: document.getElementById('codmobile-content')
+            };
+            const commonModalSteps = document.getElementById('common-modal-steps');
 
-            if (gameType === 'freefire') {
-                modalTitle.textContent = 'Recargar Free Fire';
-                freefireContent.classList.remove('hidden');
-            } else if (gameType === 'bloodstrike') {
-                modalTitle.textContent = 'Recargar Bloodstrike';
-                bloodstrikeContent.classList.remove('hidden');
-            } else if (gameType === 'codmobile') {
-                modalTitle.textContent = 'Recargar Call of Duty: Mobile';
-                codmobileContent.classList.remove('hidden');
-                commonModalSteps.style.display = 'none'; // Hide ID and payment for COD
+            let selectedGame = '';
+            let selectedItem = null;
+
+            // Function to open a modal
+            function openModal(modal) {
+                modal.classList.add('show');
             }
-            gameModal.classList.add('show');
-        }
 
-        // Setup all event listeners
-        function setupEventListeners() {
-            // Smooth scroll for nav links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href.length > 1) {
-                        e.preventDefault();
-                        document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-                        const navContent = document.getElementById('nav-content');
-                        if (!navContent.classList.contains('hidden')) {
-                            navContent.classList.add('hidden');
-                        }
+            // Function to close a modal
+            function closeModal(modal) {
+                modal.classList.remove('show');
+            }
+
+            // Open game modal
+            document.querySelectorAll('.recharge-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    selectedGame = this.closest('.card').dataset.game;
+                    modalTitle.textContent = `Recargar ${this.textContent.split(' ')[1]}`;
+
+                    // Hide all game-specific content first
+                    Object.values(gameContentSections).forEach(section => section.classList.add('hidden'));
+                    
+                    // Show the relevant game content
+                    if (gameContentSections[selectedGame]) {
+                        gameContentSections[selectedGame].classList.remove('hidden');
+                    }
+                    
+                    // For COD Mobile, hide the common steps initially
+                    if (selectedGame === 'codmobile') {
+                        commonModalSteps.classList.add('hidden');
+                    } else {
+                        commonModalSteps.classList.remove('hidden');
+                    }
+
+                    openModal(gameModal);
+                });
+            });
+
+            // Open tournament modal
+            document.querySelectorAll('.tournament-signup-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const game = this.dataset.game;
+                    const price = this.dataset.price;
+                    const mode = this.dataset.mode;
+                    const date = this.dataset.date;
+
+                    document.getElementById('tournament-modal-title').innerText = `Inscripción Torneo: ${game}`;
+                    document.getElementById('tournament-modal-price').innerText = `$${price}`;
+                    
+                    const whatsappBtn = document.getElementById('tournament-whatsapp-btn');
+                    const message = encodeURIComponent(`¡Hola! Quiero inscribirme en el torneo de ${game} (${mode}) del ${date}. Costo: $${price}. Adjunto mi comprobante de pago.`);
+                    whatsappBtn.href = `https://wa.me/584124984938?text=${message}`;
+
+                    openModal(tournamentModal);
+                });
+            });
+
+            // Open legal modals
+            document.getElementById('terms-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(termsModal);
+            });
+             document.getElementById('privacy-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(privacyModal);
+            });
+
+
+            // Close modals
+            document.querySelectorAll('.modal-close-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const modalId = this.dataset.modalId;
+                    closeModal(document.getElementById(modalId));
+                });
+            });
+            
+            document.getElementById('message-modal-ok-btn').addEventListener('click', () => closeModal(messageModal));
+
+            // Handle clicking outside the modal content to close
+            window.addEventListener('click', function (event) {
+                if (event.target.classList.contains('modal-overlay')) {
+                    closeModal(event.target);
+                }
+            });
+
+            // --- Recharge Option Selection ---
+            document.querySelectorAll('.recharge-option').forEach(option => {
+                option.addEventListener('click', function () {
+                    // Deselect all other options within the same parent container
+                    this.parentElement.querySelectorAll('.recharge-option').forEach(other => {
+                        other.classList.remove('selected');
+                    });
+                    // Select the clicked option
+                    this.classList.add('selected');
+                    selectedItem = this.dataset;
+                    
+                    // Special handling for COD Mobile
+                    if (selectedGame === 'codmobile') {
+                        const message = encodeURIComponent(`¡Hola! Estoy interesado en comprar "${selectedItem.item}" para Call of Duty: Mobile. ¿Podrían indicarme el precio y los pasos a seguir?`);
+                        window.open(`https://wa.me/584124984938?text=${message}`, '_blank');
+                        closeModal(gameModal);
                     }
                 });
             });
 
-            // Mobile nav toggle
-            document.getElementById('nav-toggle').onclick = () => {
-                document.getElementById('nav-content').classList.toggle('hidden');
-            };
-
-            // Recharge buttons
-            freefireRechargeBtn.addEventListener('click', (e) => { e.stopPropagation(); openGameModal('freefire'); });
-            bloodstrikeRechargeBtn.addEventListener('click', (e) => { e.stopPropagation(); openGameModal('bloodstrike'); });
-            codmobileRechargeBtn.addEventListener('click', (e) => { e.stopPropagation(); openGameModal('codmobile'); });
-            
-            // Recharge cards (the whole card is clickable)
-            document.querySelectorAll('.card[data-game]').forEach(card => {
-                card.addEventListener('click', () => openGameModal(card.dataset.game));
-            });
-
-            // Modal close buttons
-            closeModalBtn.addEventListener('click', () => gameModal.classList.remove('show'));
-            gameModal.addEventListener('click', (e) => {
-                if (e.target === gameModal) gameModal.classList.remove('show');
-            });
-
-            // Message modal close buttons
-            closeMessageModalBtn.addEventListener('click', () => messageModal.classList.remove('show'));
-            document.getElementById('message-modal-ok-btn').addEventListener('click', () => messageModal.classList.remove('show'));
-            messageModal.addEventListener('click', (e) => {
-                if (e.target === messageModal) messageModal.classList.remove('show');
-            });
-
-            // Terms and Conditions Modal Listeners
-            termsConditionsLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                termsConditionsModal.classList.add('show');
-            });
-            closeTermsConditionsModalBtn.addEventListener('click', () => termsConditionsModal.classList.remove('show'));
-            termsConditionsModal.addEventListener('click', (e) => {
-                if (e.target === termsConditionsModal) termsConditionsModal.classList.remove('show');
-            });
-
-
-            // Recharge item selection
-            document.querySelectorAll('.recharge-option').forEach(option => {
-                option.addEventListener('click', () => {
-                    document.querySelectorAll('.recharge-option').forEach(opt => opt.classList.remove('selected'));
-                    option.classList.add('selected');
-                    selectedItem = option.dataset.item;
-                    selectedPrice = option.dataset.price || ''; // Handle cases with no price like COD
-                });
-            });
-
-            // Buy button logic
-            buyButton.addEventListener('click', () => {
-                const whatsappNumber = '584124984938';
-                let message = '';
+            // --- Buy Button Logic ---
+            buyButton.addEventListener('click', function () {
+                const gameID = gameIdInput.value.trim();
 
                 if (!selectedItem) {
-                    showMessage('Error', 'Por favor, selecciona un paquete para continuar.');
+                    showMessageModal('Error', 'Por favor, selecciona un paquete de recarga.');
                     return;
                 }
-                
-                if (selectedGame === 'codmobile') {
-                    message = `¡Hola! Quisiera coordinar una recarga de *Call of Duty: Mobile* para el paquete de *${selectedItem}*. ¿Me indicas los pasos a seguir?`;
-                
-                } else {
-                    const gameId = gameIdInput.value.trim();
-                    if (!gameId) {
-                        showMessage('Error', 'Por favor, ingresa tu ID de jugador.');
-                        return;
-                    }
-                     message = `¡Hola! Quiero hacer una recarga.
-
-*PROCEDIMIENTO:*
-✅ *Comprobante de pago:* (Adjuntar aquí)
-✅ *ID de Jugador:* ${gameId}
-✅ *Paquete:* ${selectedItem} (${selectedPrice})
-
-¡Gracias!`;
+                if (!gameID) {
+                    showMessageModal('Error', 'Por favor, ingresa tu ID de jugador.');
+                    return;
                 }
 
-                const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappLink, '_blank');
-                gameModal.classList.remove('show');
+                const message = encodeURIComponent(`¡Hola! Quiero comprar "${selectedItem.item}" (${selectedItem.price}) para ${selectedGame}. Mi ID de jugador es: ${gameID}. Adjunto mi comprobante de pago.`);
+                window.open(`https://wa.me/584124984938?text=${message}`, '_blank');
+                
+                // Clear inputs and close modal after sending
+                gameIdInput.value = '';
+                document.querySelectorAll('.recharge-option.selected').forEach(opt => opt.classList.remove('selected'));
+                selectedItem = null;
+                closeModal(gameModal);
             });
-        }
-        
-        // --- Live Purchase Notification Logic ---
-        function showLivePurchase() {
-            const names = ["Carlos", "Maria", "José", "Ana", "Luis", "Sofia", "Juan", "Valeria", "Pedro", "Camila", "David", "Laura", "Miguel", "Andrea"];
-            const items = [
-                { game: "Free Fire", item: "572 💎", icon: "fa-gem" },
-                { game: "Bloodstrike", item: "Pase Élite", icon: "fa-shield-halved" },
-                { game: "Free Fire", item: "Tarjeta Semanal", icon: "fa-ticket" },
-                { game: "Bloodstrike", item: "320 Oro", icon: "fa-coins" },
-                { game: "Free Fire", item: "110 💎", icon: "fa-gem" },
-                { game: "Call of Duty", item: "880 CP", icon: "fa-crosshairs" },
-                { game: "Free Fire", item: "Tarjeta Mensual", icon: "fa-calendar-alt" },
-                { game: "Bloodstrike", item: "1100 Oro", icon: "fa-coins" },
-                { game: "Free Fire", item: "913 💎", icon: "fa-gem" },
-                { game: "Call of Duty", item: "Pase de Batalla", icon: "fa-trophy" },
+            
+            // --- General Message Modal Function ---
+            function showMessageModal(title, text) {
+                document.getElementById('message-modal-title').textContent = title;
+                document.getElementById('message-modal-text').textContent = text;
+                openModal(messageModal);
+            }
+            
+            // --- Live Purchase Notification ---
+            const notificationContainer = document.getElementById('notification-container');
+            const fakePurchases = [
+                { user: 'Player_123', item: '572 Diamantes', game: 'Free Fire' },
+                { user: 'ShadowStriker', item: 'Pase Élite', game: 'Bloodstrike' },
+                { user: 'GamerX', item: '1100 Oro', game: 'Bloodstrike' },
+                { user: 'ProKiller', item: 'Tarjeta Semanal', game: 'Free Fire' },
+                { user: 'VenezuelaPower', item: '913 Diamantes', game: 'Free Fire' },
             ];
 
-            const randomName = names[Math.floor(Math.random() * names.length)];
-            const randomItem = items[Math.floor(Math.random() * items.length)];
+            function showRandomNotification() {
+                const purchase = fakePurchases[Math.floor(Math.random() * fakePurchases.length)];
+                const notification = document.createElement('div');
+                notification.className = 'notification-popup';
+                notification.innerHTML = `
+                    <i class="fas fa-shopping-cart"></i>
+                    <div>
+                        <p class="font-bold">${purchase.user} acaba de comprar</p>
+                        <p class="text-sm">${purchase.item} para ${purchase.game}</p>
+                    </div>
+                `;
+                notificationContainer.appendChild(notification);
 
-            const container = document.getElementById('notification-container');
-            const popup = document.createElement('div');
-            popup.className = 'notification-popup';
-            
-            popup.innerHTML = `
-                <i class="fas ${randomItem.icon}"></i>
-                <div>
-                    <p class="font-bold text-white">${randomName}</p>
-                    <p class="text-sm text-gray-300">acaba de recargar ${randomItem.item} para ${randomItem.game}</p>
-                </div>
-            `;
+                // Remove the notification after the animation ends
+                setTimeout(() => {
+                    notification.remove();
+                }, 6000);
+            }
 
-            container.appendChild(popup);
-
-            setTimeout(() => {
-                popup.remove();
-            }, 6000); // Remove after 6 seconds
-        }
-
-        // Initialize everything after DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Assign DOM elements
-            gameModal = document.getElementById('game-modal');
-            messageModal = document.getElementById('message-modal');
-            termsConditionsModal = document.getElementById('terms-conditions-modal');
-            closeModalBtn = document.getElementById('close-modal');
-            closeMessageModalBtn = document.getElementById('close-message-modal');
-            closeTermsConditionsModalBtn = document.getElementById('close-terms-conditions-modal');
-            freefireRechargeBtn = document.getElementById('freefire-recharge-btn');
-            bloodstrikeRechargeBtn = document.getElementById('bloodstrike-recharge-btn');
-            codmobileRechargeBtn = document.getElementById('codmobile-recharge-btn');
-            modalTitle = document.getElementById('modal-title');
-            freefireContent = document.getElementById('freefire-content');
-            bloodstrikeContent = document.getElementById('bloodstrike-content');
-            codmobileContent = document.getElementById('codmobile-content');
-            gameIdInput = document.getElementById('game-modal-id');
-            buyButton = document.getElementById('buy-button');
-            termsConditionsLink = document.getElementById('terms-conditions-link');
-            commonModalSteps = document.getElementById('common-modal-steps');
-
-            // Set up event listeners
-            setupEventListeners();
-            
-            // Start live purchase notifications
-            setInterval(showLivePurchase, Math.random() * (10000 - 6000) + 6000); // Show every 6-10 seconds
+            // Show a notification every few seconds
+            setInterval(showRandomNotification, 12000); // every 12 seconds
         });
     </script>
 </body>
